@@ -1,4 +1,4 @@
-package cfarrell.activities
+package cfarrell.hillfortexplorer.activities
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -13,14 +13,17 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hillfort)
-        info("Placemark Activity started..")
+        info("Hillfort Activity started..")
         btnAdd.setOnClickListener() {
-            val placemarkTitle = placemarkTitle.text.toString()
-            if (placemarkTitle.isNotEmpty()) {
-                info("add Button Pressed: $placemarkTitle")
-            }
-            else {
-                toast ("Please Enter a title")
+            btnAdd.setOnClickListener() {
+                //val hillfortTitle = "hello"
+                val hillfortTitle = hillfortTitle.text.toString()
+                if (hillfortTitle.isNotEmpty()) {
+                    info("add Button Pressed: $hillfortTitle")
+                }
+                else {
+                    toast ("Please Enter a title")
+                }
             }
         }
 
