@@ -8,7 +8,7 @@ import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import org.jetbrains.anko.toast
 import cfarrell.hillfortexplorer.models.HillfortModel
-class PlacemarkActivity : AppCompatActivity(), AnkoLogger {
+class HillfortActivity : AppCompatActivity(), AnkoLogger {
 
     var hillfort = HillfortModel()
     val hillforts= ArrayList<HillfortModel>()
@@ -20,7 +20,10 @@ class PlacemarkActivity : AppCompatActivity(), AnkoLogger {
 
         btnAdd.setOnClickListener() {
             hillfort.title = hillfortTitle.text.toString()
+            hillfort.description = description.text.toString()
+
             if (hillfort.title.isNotEmpty()) {
+                hillforts.add(hillfort.copy())
                 info("add Button Pressed: $hillfortTitle")
                 hillforts.forEach { info("add Button Pressed: ${it.title}")}
             }
