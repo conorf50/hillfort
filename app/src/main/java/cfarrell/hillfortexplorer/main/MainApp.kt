@@ -1,16 +1,20 @@
 package cfarrell.hillfortexplorer.main
 
 import android.app.Application
-import cfarrell.hillfortexplorer.models.HillfortModel
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
+import cfarrell.hillfortexplorer.models.HillfortJSONStore
+//import cfarrell.hillfortexplorer.models.HillfortMemStore
+import cfarrell.hillfortexplorer.models.HillfortStore
 
 class MainApp : Application(), AnkoLogger {
-    val hillforts= ArrayList<HillfortModel>()
 
+    lateinit var hillforts: HillfortStore
 
     override fun onCreate() {
         super.onCreate()
-        info("HillfortExplorer started")
+        //placemarks = PlacemarkMemStore()
+        hillforts = HillfortJSONStore(applicationContext)
+        info("HIllfort started")
     }
 }
