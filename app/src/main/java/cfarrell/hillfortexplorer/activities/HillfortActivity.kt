@@ -7,25 +7,26 @@ import kotlinx.android.synthetic.main.activity_hillfort.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import org.jetbrains.anko.toast
+import cfarrell.hillfortexplorer.models.HillfortModel
+class PlacemarkActivity : AppCompatActivity(), AnkoLogger {
 
-class HillfortActivity : AppCompatActivity(), AnkoLogger {
+    var hillfort = HillfortModel()
+    val hillforts= ArrayList<HillfortModel>()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hillfort)
-        info("Hillfort Activity started..")
+
         btnAdd.setOnClickListener() {
-            btnAdd.setOnClickListener() {
-                //val hillfortTitle = "hello"
-                val hillfortTitle = hillfortTitle.text.toString()
-                if (hillfortTitle.isNotEmpty()) {
-                    info("add Button Pressed: $hillfortTitle")
-                }
-                else {
-                    toast ("Please Enter a title")
-                }
+            hillfort.title = hillfortTitle.text.toString()
+            if (hillfort.title.isNotEmpty()) {
+                info("add Button Pressed: $hillfortTitle")
+                hillforts.forEach { info("add Button Pressed: ${it.title}")}
+            }
+            else {
+                toast ("Please Enter a title")
             }
         }
-
     }
 }
