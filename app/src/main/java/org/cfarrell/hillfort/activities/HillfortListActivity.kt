@@ -1,25 +1,25 @@
-package org.wit.placemark.activities
+package org.cfarrell.hillfort.activities
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.*
-import kotlinx.android.synthetic.main.activity_placemark_list.*
+import kotlinx.android.synthetic.main.activity_hillfort_list.*
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.startActivityForResult
-import org.wit.placemark.R
-import org.wit.placemark.main.MainApp
-import org.wit.placemark.models.PlacemarkModel
+import org.cfarrell.hillfort.R
+import org.cfarrell.hillfort.main.MainApp
+import org.cfarrell.hillfort.models.PlacemarkModel
 
 
-class PlacemarkListActivity : AppCompatActivity(), PlacemarkListener {
+class HillfortListActivity : AppCompatActivity(), PlacemarkListener {
 
   lateinit var app: MainApp
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_placemark_list)
+    setContentView(R.layout.activity_hillfort_list)
     app = application as MainApp
     toolbarMain.title = title
     setSupportActionBar(toolbarMain)
@@ -46,7 +46,7 @@ class PlacemarkListActivity : AppCompatActivity(), PlacemarkListener {
 
   override fun onOptionsItemSelected(item: MenuItem?): Boolean {
     when (item?.itemId) {
-      R.id.item_add -> startActivityForResult<PlacemarkActivity>(0)
+      R.id.item_add -> startActivityForResult<HillfortActivity>(0)
     }
     return super.onOptionsItemSelected(item)
   }
@@ -54,7 +54,7 @@ class PlacemarkListActivity : AppCompatActivity(), PlacemarkListener {
 
   override fun onPlacemarkClick(placemark: PlacemarkModel) {
 
-    startActivityForResult(intentFor<PlacemarkActivity>().putExtra("placemark_edit", placemark), 0)
+    startActivityForResult(intentFor<HillfortActivity>().putExtra("placemark_edit", placemark), 0)
   }
 
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

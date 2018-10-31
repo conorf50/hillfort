@@ -1,4 +1,4 @@
-package org.wit.placemark
+package org.cfarrell.hillfort
 
 import org.junit.Test
 

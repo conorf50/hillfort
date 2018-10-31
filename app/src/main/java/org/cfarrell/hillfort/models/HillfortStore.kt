@@ -1,6 +1,6 @@
-package org.wit.placemark.models
+package org.cfarrell.hillfort.models
 
-interface PlacemarkStore {
+interface HillfortStore {
   fun findAll(): List<PlacemarkModel>
   fun create(placemark: PlacemarkModel)
   fun update(placemark: PlacemarkModel)

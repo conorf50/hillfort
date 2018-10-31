@@ -1,13 +1,13 @@
-package org.wit.placemark.activities
+package org.cfarrell.hillfort.activities
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.card_placemark.view.*
-import org.wit.placemark.R
-import org.wit.placemark.helpers.readImageFromPath
-import org.wit.placemark.models.PlacemarkModel
+import kotlinx.android.synthetic.main.card_hillfort.view.*
+import org.cfarrell.hillfort.R
+import org.cfarrell.hillfort.helpers.readImageFromPath
+import org.cfarrell.hillfort.models.PlacemarkModel
 
 interface PlacemarkListener {
   fun onPlacemarkClick(placemark: PlacemarkModel)
@@ -17,7 +17,7 @@ class PlacemarkAdapter constructor(private var placemarks: List<PlacemarkModel>,
                                    private val listener: PlacemarkListener) : RecyclerView.Adapter<PlacemarkAdapter.MainHolder>() {
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
-    return MainHolder(LayoutInflater.from(parent?.context).inflate(R.layout.card_placemark, parent, false))
+    return MainHolder(LayoutInflater.from(parent?.context).inflate(R.layout.card_hillfort, parent, false))
   }
 
   override fun onBindViewHolder(holder: MainHolder, position: Int) {

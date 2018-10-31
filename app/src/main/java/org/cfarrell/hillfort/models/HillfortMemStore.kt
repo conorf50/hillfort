@@ -1,4 +1,4 @@
-package org.wit.placemark.models
+package org.cfarrell.hillfort.models
 
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
@@ -9,7 +9,7 @@ internal fun getId(): Long {
   return lastId++
 }
 
-class PlacemarkMemStore : PlacemarkStore, AnkoLogger {
+class HillfortMemStore : HillfortStore, AnkoLogger {
 
   val placemarks = ArrayList<PlacemarkModel>()
 

@@ -1,4 +1,4 @@
-package org.wit.placemark.models
+package org.cfarrell.hillfort.models
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

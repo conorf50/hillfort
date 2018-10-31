@@ -1,4 +1,4 @@
-package org.wit.placemark
+package org.cfarrell.hillfort
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4

@@ -1,4 +1,4 @@
-package org.wit.placemark.helpers
+package org.cfarrell.hillfort.helpers
 
 import android.app.Activity
 import android.content.Context
@@ -7,7 +7,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.provider.MediaStore
-import org.wit.placemark.R
+import org.cfarrell.hillfort.R
 import java.io.IOException
 
 fun showImagePicker(parent: Activity, id: Int) {

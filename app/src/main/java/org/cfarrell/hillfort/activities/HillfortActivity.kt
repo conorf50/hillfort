@@ -1,24 +1,24 @@
-package org.wit.placemark.activities
+package org.cfarrell.hillfort.activities
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import kotlinx.android.synthetic.main.activity_placemark.*
+import kotlinx.android.synthetic.main.activity_hllfort.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.toast
-import org.wit.placemark.R
-import org.wit.placemark.helpers.readImage
-import org.wit.placemark.helpers.readImageFromPath
-import org.wit.placemark.helpers.showImagePicker
-import org.wit.placemark.main.MainApp
-import org.wit.placemark.models.Location
-import org.wit.placemark.models.PlacemarkModel
+import org.cfarrell.hillfort.R
+import org.cfarrell.hillfort.helpers.readImage
+import org.cfarrell.hillfort.helpers.readImageFromPath
+import org.cfarrell.hillfort.helpers.showImagePicker
+import org.cfarrell.hillfort.main.MainApp
+import org.cfarrell.hillfort.models.Location
+import org.cfarrell.hillfort.models.PlacemarkModel
 
-class PlacemarkActivity : AppCompatActivity(), AnkoLogger {
+class HillfortActivity : AppCompatActivity(), AnkoLogger {
 
   var placemark = PlacemarkModel()
   lateinit var app: MainApp
@@ -27,7 +27,7 @@ class PlacemarkActivity : AppCompatActivity(), AnkoLogger {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_placemark)
+    setContentView(R.layout.activity_hllfort)
     toolbarAdd.title = title
     setSupportActionBar(toolbarAdd)
     info("Placemark Activity started..")
@@ -80,7 +80,7 @@ class PlacemarkActivity : AppCompatActivity(), AnkoLogger {
   }
 
   override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-    menuInflater.inflate(R.menu.menu_placemark, menu)
+    menuInflater.inflate(R.menu.menu_hillfort, menu)
     return super.onCreateOptionsMenu(menu)
   }
 
