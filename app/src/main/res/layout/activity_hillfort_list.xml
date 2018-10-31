@@ -28,4 +28,13 @@
     android:scrollbars="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
+
+  <android.support.design.widget.FloatingActionButton
+          android:id="@+id/fab_add"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="end|bottom"
+          android:src="@android:drawable/ic_menu_add"
+          android:layout_margin="16dp" tools:srcCompat="@tools:sample/avatars" android:tint="@color/colorPrimary"/>
+
 </android.support.design.widget.CoordinatorLayout>
