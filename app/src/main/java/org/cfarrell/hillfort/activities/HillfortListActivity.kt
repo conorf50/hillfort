@@ -26,6 +26,14 @@ class HillfortListActivity : AppCompatActivity(), HillfortListener {
     toolbarMain.title = title
     setSupportActionBar(toolbarMain)
 
+
+    // add a floating action button listener
+    val fab: View = findViewById(R.id.fab_add)
+    fab.setOnClickListener { view ->
+      startActivityForResult<HillfortActivity>(0)
+    }
+
+
     val layoutManager = LinearLayoutManager(this)
     recyclerView.layoutManager = layoutManager
     recyclerView.adapter = HillfortAdapter(app.hillforts.findAll(), this)
@@ -55,13 +63,14 @@ class HillfortListActivity : AppCompatActivity(), HillfortListener {
 //    return super.onOptionsItemSelected(item)
 //  }
 
-  override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-    val fab: View = findViewById(R.id.fab_add)
-    fab.setOnClickListener { view ->
-      startActivityForResult<HillfortActivity>(0)
-    }
-    return super.onOptionsItemSelected(item)
-  }
+//  override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+//
+//    val fab: View = findViewById(R.id.fab_add)
+//    fab.setOnClickListener { view ->
+//      startActivityForResult<HillfortActivity>(0)
+//    }
+//    return super.onOptionsItemSelected(item)
+//  }
 
 
   override fun onHillfortClick(hillfort: HillfortModel) {
