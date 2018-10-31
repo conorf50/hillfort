@@ -38,20 +38,20 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
     if (intent.hasExtra("placemark_edit")) {
       edit = true
       hillfort = intent.extras.getParcelable<HillfortModel>("placemark_edit")
-      placemarkTitle.setText(hillfort.title)
+      hillfortTitle.setText(hillfort.title)
       description.setText(hillfort.description)
-      placemarkImage.setImageBitmap(readImageFromPath(this, hillfort.image))
+      hillfortImage.setImageBitmap(readImageFromPath(this, hillfort.image))
       if (hillfort.image != null) {
-        chooseImage.setText(R.string.change_placemark_image)
+        chooseImage.setText(R.string.change_hillfort_image)
       }
-      btnAdd.setText(R.string.save_placemark)
+      btnAdd.setText(R.string.save_hillfort)
     }
 
     btnAdd.setOnClickListener() {
-      hillfort.title = placemarkTitle.text.toString()
+      hillfort.title = hillfortTitle.text.toString()
       hillfort.description = description.text.toString()
       if (hillfort.title.isEmpty()) {
-        toast(R.string.enter_placemark_title)
+        toast(R.string.enter_hillfort_title)
       } else {
         if (edit) {
           app.hillforts.update(hillfort.copy())
@@ -59,7 +59,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
           app.hillforts.create(hillfort.copy())
         }
       }
-      info("add Button Pressed: $placemarkTitle")
+      info("add Button Pressed: $hillfortTitle")
       setResult(AppCompatActivity.RESULT_OK)
       finish()
     }
@@ -68,7 +68,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
       showImagePicker(this, IMAGE_REQUEST)
     }
 
-    placemarkLocation.setOnClickListener {
+    hillfortLocation.setOnClickListener {
       val location = Location(52.245696, -7.139102, 15f)
       if (hillfort.zoom != 0f) {
         location.lat = hillfort.lat
@@ -99,8 +99,8 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
       IMAGE_REQUEST -> {
         if (data != null) {
           hillfort.image = data.getData().toString()
-          placemarkImage.setImageBitmap(readImage(this, resultCode, data))
-          chooseImage.setText(R.string.change_placemark_image)
+          hillfortImage.setImageBitmap(readImage(this, resultCode, data))
+          chooseImage.setText(R.string.change_hillfort_image)
         }
       }
       LOCATION_REQUEST -> {
