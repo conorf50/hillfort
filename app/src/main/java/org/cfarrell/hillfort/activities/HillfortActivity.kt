@@ -95,7 +95,9 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
 
       R.id.item_delete -> {
         info { "DELETE BUTTON PRESSED" }
-
+        // todo prompt user before delete!
+        app.hillforts.delete(hillfort)
+        finish()
       }
 
     }
