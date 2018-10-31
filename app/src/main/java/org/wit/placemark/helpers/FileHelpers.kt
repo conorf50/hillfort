@@ -1,4 +1,4 @@
-package cfarrell.hillfortexplorer.helpers
+package org.wit.placemark.helpers
 
 import android.content.Context
 import android.util.Log

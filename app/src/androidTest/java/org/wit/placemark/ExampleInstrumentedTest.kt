@@ -1,4 +1,4 @@
-package cfarrell.hillfortexplorer
+package org.wit.placemark
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
@@ -15,10 +15,10 @@ import org.junit.Assert.*
  */
 @RunWith(AndroidJUnit4::class)
 class ExampleInstrumentedTest {
-    @Test
-    fun useAppContext() {
-        // Context of the app under test.
-        val appContext = InstrumentationRegistry.getTargetContext()
-        assertEquals("cfarrell.hillfortexplorer", appContext.packageName)
-    }
+  @Test
+  fun useAppContext() {
+    // Context of the app under test.
+    val appContext = InstrumentationRegistry.getTargetContext()
+    assertEquals("org.wit.placemark", appContext.packageName)
+  }
 }

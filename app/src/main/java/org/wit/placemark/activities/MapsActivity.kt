@@ -1,4 +1,4 @@
-package cfarrell.hillfortexplorer.activities
+package org.wit.placemark.activities
 
 import android.app.Activity
 import android.content.Intent
@@ -12,8 +12,8 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
-import cfarrell.hillfortexplorer.R
-import cfarrell.hillfortexplorer.models.*
+import org.wit.placemark.R
+import org.wit.placemark.models.Location
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerDragListener, GoogleMap.OnMarkerClickListener {
 
@@ -35,7 +35,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
     map.setOnMarkerClickListener(this)
     val loc = LatLng(location.lat, location.lng)
     val options = MarkerOptions()
-        .title("Hillfort")
+        .title("Placemark")
         .snippet("GPS : " + loc.toString())
         .draggable(true)
         .position(loc)
