@@ -1,5 +1,4 @@
-package org.wit.placemark.activities
-
+package cfarrell.hillfortexplorer.activities
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -9,11 +8,10 @@ import kotlinx.android.synthetic.main.activity_hillfort_list.*
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.startActivityForResult
 import cfarrell.hillfortexplorer.R
-import cfarrell.hillfortexplorer.activities.HillfortActivity
 import cfarrell.hillfortexplorer.main.MainApp
 import cfarrell.hillfortexplorer.models.HillfortModel
 
-class HillfortListActivity : AppCompatActivity(), HillfortListener {
+class HillfortListActivity : AppCompatActivity(), HillfortListener{
 
   lateinit var app: MainApp
 
@@ -34,7 +32,7 @@ class HillfortListActivity : AppCompatActivity(), HillfortListener {
     showHillforts( app.hillforts.findAll())
   }
 
-  fun showHillforts (placemarks: List<HillfortModel>) {
+  fun showHillforts (hillforts: List<HillfortModel>) {
     recyclerView.adapter = HillfortAdapter(hillforts, this)
     recyclerView.adapter?.notifyDataSetChanged()
   }

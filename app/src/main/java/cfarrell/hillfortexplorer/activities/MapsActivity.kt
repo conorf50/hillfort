@@ -1,8 +1,7 @@
-package org.wit.placemark.activities
+package cfarrell.hillfortexplorer.activities
 
 import android.app.Activity
 import android.content.Intent
-import android.location.Location
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 
@@ -14,7 +13,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import cfarrell.hillfortexplorer.R
-import cfarrell.hillfortexplorer.models.Location
+import cfarrell.hillfortexplorer.models.*
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerDragListener, GoogleMap.OnMarkerClickListener {
 

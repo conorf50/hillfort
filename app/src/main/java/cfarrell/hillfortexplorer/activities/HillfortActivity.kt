@@ -1,6 +1,5 @@
 package cfarrell.hillfortexplorer.activities
 import android.content.Intent
-import android.location.Location
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -9,7 +8,6 @@ import kotlinx.android.synthetic.main.activity_hillfort.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import org.jetbrains.anko.intentFor
-import org.jetbrains.anko.toast
 import cfarrell.hillfortexplorer.R
 import cfarrell.hillfortexplorer.helpers.readImage
 import cfarrell.hillfortexplorer.helpers.readImageFromPath
@@ -17,6 +15,7 @@ import cfarrell.hillfortexplorer.helpers.showImagePicker
 import cfarrell.hillfortexplorer.main.MainApp
 import cfarrell.hillfortexplorer.models.Location
 import cfarrell.hillfortexplorer.models.HillfortModel
+import org.jetbrains.anko.toast
 
 class HillfortActivity : AppCompatActivity(), AnkoLogger {
 
@@ -30,12 +29,12 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
         setContentView(R.layout.activity_hillfort)
         toolbarAdd.title = title
         setSupportActionBar(toolbarAdd)
-        info("Placemark Activity started..")
+        info("Hillfort Activity started..")
 
         app = application as MainApp
         var edit = false
 
-        if (intent.hasExtra("placemark_edit")) {
+        if (intent.hasExtra("hillfort edit")) {
             edit = true
             hillfort = intent.extras.getParcelable<HillfortModel>("hillfort_edit")
             hillfortTitle.setText(hillfort.title)
@@ -44,8 +43,25 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
             if (hillfort.image != null) {
                 chooseImage.setText(R.string.change_hillfort_image)
             }
+            btnAdd.setText(R.string.save_hillfort)
         }
 
+        btnAdd.setOnClickListener() {
+            hillfort.title = hillfortTitle.text.toString()
+            hillfort.description = description.text.toString()
+            if (hillfort.title.isEmpty()) {
+                toast(R.string.enter_hillfort_title)
+            } else {
+                if (edit) {
+                    app.hillforts.update(hillfort.copy())
+                } else {
+                    app.hillforts.create(hillfort.copy())
+                }
+            }
+            info("add Button Pressed: $hillfortTitle")
+            setResult(AppCompatActivity.RESULT_OK)
+            finish()
+        }
 
         chooseImage.setOnClickListener {
             showImagePicker(this, IMAGE_REQUEST)

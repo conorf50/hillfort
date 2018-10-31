@@ -1,22 +1,19 @@
-package org.wit.placemark.activities
-
+package cfarrell.hillfortexplorer.activities
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import cfarrell.hillfortexplorer.models.HillfortModel
 import kotlinx.android.synthetic.main.card_hillfort.view.*
-import kotlinx.android.synthetic.main.card_placemark.view.*
-import org.wit.placemark.R
-import org.wit.placemark.helpers.readImageFromPath
-import org.wit.placemark.models.PlacemarkModel
+import cfarrell.hillfortexplorer.R
+import cfarrell.hillfortexplorer.helpers.readImageFromPath
 
-interface PlacemarkListener {
-  fun onPlacemarkClick(placemark: PlacemarkModel)
+interface HillfortListener {
+  fun onHillfortClick(hillfort: HillfortModel)
 }
 
 class HillfortAdapter constructor(private var hillforts: List<HillfortModel>,
-                                   private val listener: HIllfortListener) : RecyclerView.Adapter<HillfortAdapter.MainHolder>() {
+                                   private val listener: HillfortListener) : RecyclerView.Adapter<HillfortAdapter.MainHolder>() {
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
     return MainHolder(LayoutInflater.from(parent?.context).inflate(R.layout.card_hillfort, parent, false))
@@ -35,7 +32,7 @@ class HillfortAdapter constructor(private var hillforts: List<HillfortModel>,
       itemView.hillfortTitle.text = hillfort.title
       itemView.description.text = hillfort.description
       itemView.imageIcon.setImageBitmap(readImageFromPath(itemView.context, hillfort.image))
-      itemView.setOnClickListener { listener.onPlacemarkClick(hillfort) }
+      itemView.setOnClickListener { listener.onHillfortClick(hillfort) }
     }
   }
 }
