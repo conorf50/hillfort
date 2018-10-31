@@ -27,15 +27,15 @@ class HillfortListActivity : AppCompatActivity(), HillfortListener {
     val layoutManager = LinearLayoutManager(this)
     recyclerView.layoutManager = layoutManager
     recyclerView.adapter = HillfortAdapter(app.hillforts.findAll(), this)
-    loadPlacemarks()
+    loadHillforts()
   }
 
-  private fun loadPlacemarks() {
-    showPlacemarks( app.hillforts.findAll())
+  private fun loadHillforts() {
+    showHillforts( app.hillforts.findAll())
   }
 
-  fun showPlacemarks (placemarks: List<HillfortModel>) {
-    recyclerView.adapter = HillfortAdapter(placemarks, this)
+  fun showHillforts (hillforts: List<HillfortModel>) {
+    recyclerView.adapter = HillfortAdapter(hillforts, this)
     recyclerView.adapter?.notifyDataSetChanged()
   }
 
@@ -52,13 +52,13 @@ class HillfortListActivity : AppCompatActivity(), HillfortListener {
   }
 
 
-  override fun onPlacemarkClick(placemark: HillfortModel) {
+  override fun onHillfortClick(hillfort: HillfortModel) {
 
-    startActivityForResult(intentFor<HillfortActivity>().putExtra("placemark_edit", placemark), 0)
+    startActivityForResult(intentFor<HillfortActivity>().putExtra("hillfort edit", hillfort), 0)
   }
 
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-    loadPlacemarks()
+    loadHillforts()
     super.onActivityResult(requestCode, resultCode, data)
   }
 }

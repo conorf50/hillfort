@@ -30,14 +30,14 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
     setContentView(R.layout.activity_hllfort)
     toolbarAdd.title = title
     setSupportActionBar(toolbarAdd)
-    info("Placemark Activity started..")
+    info("Hillfort Activity started..")
 
     app = application as MainApp
     var edit = false
 
-    if (intent.hasExtra("placemark_edit")) {
+    if (intent.hasExtra("hillfort edit")) {
       edit = true
-      hillfort = intent.extras.getParcelable<HillfortModel>("placemark_edit")
+      hillfort = intent.extras.getParcelable<HillfortModel>("hillfort edit")
       hillfortTitle.setText(hillfort.title)
       description.setText(hillfort.description)
       hillfortImage.setImageBitmap(readImageFromPath(this, hillfort.image))

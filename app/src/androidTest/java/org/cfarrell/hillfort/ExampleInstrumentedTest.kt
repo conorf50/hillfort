@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
   fun useAppContext() {
     // Context of the app under test.
     val appContext = InstrumentationRegistry.getTargetContext()
-    assertEquals("org.wit.placemark", appContext.packageName)
+    assertEquals("org.cfarrell.hillfortexplorer", appContext.packageName)
   }
 }

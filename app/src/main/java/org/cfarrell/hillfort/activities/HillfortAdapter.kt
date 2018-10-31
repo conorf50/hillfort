@@ -10,7 +10,7 @@ import org.cfarrell.hillfort.helpers.readImageFromPath
 import org.cfarrell.hillfort.models.HillfortModel
 
 interface HillfortListener {
-  fun onPlacemarkClick(hillfortModel: HillfortModel)
+  fun onHillfortClick(hillfortModel: HillfortModel)
 }
 
 class HillfortAdapter constructor(private var hillforts: List<HillfortModel>,
@@ -33,7 +33,7 @@ class HillfortAdapter constructor(private var hillforts: List<HillfortModel>,
       itemView.hillfortTitle.text = hillfort.title
       itemView.description.text = hillfort.description
       itemView.imageIcon.setImageBitmap(readImageFromPath(itemView.context, hillfort.image))
-      itemView.setOnClickListener { listener.onPlacemarkClick(hillfort) }
+      itemView.setOnClickListener { listener.onHillfortClick(hillfort) }
     }
   }
 }
