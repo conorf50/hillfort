@@ -3,8 +3,10 @@ package org.cfarrell.hillfort.activities
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.design.widget.FloatingActionButton
 import android.support.v7.widget.LinearLayoutManager
 import android.view.*
+import android.widget.Button
 import kotlinx.android.synthetic.main.activity_hillfort_list.*
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.startActivityForResult
@@ -44,9 +46,19 @@ class HillfortListActivity : AppCompatActivity(), HillfortListener {
     return super.onCreateOptionsMenu(menu)
   }
 
+//  override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+//    when (item?.itemId) {
+//      // when the user clicks the add button, start the add hillfort activity
+//      R.id.item_add -> startActivityForResult<HillfortActivity>(0)
+//      //R.id.fab_add -> startActivityForResult<HillfortActivity>(0)
+//    }
+//    return super.onOptionsItemSelected(item)
+//  }
+
   override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-    when (item?.itemId) {
-      R.id.item_add -> startActivityForResult<HillfortActivity>(0)
+    val fab: View = findViewById(R.id.fab_add)
+    fab.setOnClickListener { view ->
+      startActivityForResult<HillfortActivity>(0)
     }
     return super.onOptionsItemSelected(item)
   }
