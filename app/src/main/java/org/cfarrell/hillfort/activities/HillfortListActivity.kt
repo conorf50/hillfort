@@ -10,10 +10,10 @@ import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.startActivityForResult
 import org.cfarrell.hillfort.R
 import org.cfarrell.hillfort.main.MainApp
-import org.cfarrell.hillfort.models.PlacemarkModel
+import org.cfarrell.hillfort.models.HillfortModel
 
 
-class HillfortListActivity : AppCompatActivity(), PlacemarkListener {
+class HillfortListActivity : AppCompatActivity(), HillfortListener {
 
   lateinit var app: MainApp
 
@@ -26,16 +26,16 @@ class HillfortListActivity : AppCompatActivity(), PlacemarkListener {
 
     val layoutManager = LinearLayoutManager(this)
     recyclerView.layoutManager = layoutManager
-    recyclerView.adapter = PlacemarkAdapter(app.placemarks.findAll(), this)
+    recyclerView.adapter = HillfortAdapter(app.hillforts.findAll(), this)
     loadPlacemarks()
   }
 
   private fun loadPlacemarks() {
-    showPlacemarks( app.placemarks.findAll())
+    showPlacemarks( app.hillforts.findAll())
   }
 
-  fun showPlacemarks (placemarks: List<PlacemarkModel>) {
-    recyclerView.adapter = PlacemarkAdapter(placemarks, this)
+  fun showPlacemarks (placemarks: List<HillfortModel>) {
+    recyclerView.adapter = HillfortAdapter(placemarks, this)
     recyclerView.adapter?.notifyDataSetChanged()
   }
 
@@ -52,7 +52,7 @@ class HillfortListActivity : AppCompatActivity(), PlacemarkListener {
   }
 
 
-  override fun onPlacemarkClick(placemark: PlacemarkModel) {
+  override fun onPlacemarkClick(placemark: HillfortModel) {
 
     startActivityForResult(intentFor<HillfortActivity>().putExtra("placemark_edit", placemark), 0)
   }

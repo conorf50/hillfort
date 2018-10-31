@@ -11,32 +11,32 @@ internal fun getId(): Long {
 
 class HillfortMemStore : HillfortStore, AnkoLogger {
 
-  val placemarks = ArrayList<PlacemarkModel>()
+  val hillforts = ArrayList<HillfortModel>()
 
-  override fun findAll(): List<PlacemarkModel> {
-    return placemarks
+  override fun findAll(): List<HillfortModel> {
+    return hillforts
   }
 
-  override fun create(placemark: PlacemarkModel) {
-    placemark.id = getId()
-    placemarks.add(placemark)
+  override fun create(hillfort: HillfortModel) {
+    hillfort.id = getId()
+    hillforts.add(hillfort)
     logAll()
   }
 
-  override fun update(placemark: PlacemarkModel) {
-    var foundPlacemark: PlacemarkModel? = placemarks.find { p -> p.id == placemark.id }
-    if (foundPlacemark != null) {
-      foundPlacemark.title = placemark.title
-      foundPlacemark.description = placemark.description
-      foundPlacemark.image = placemark.image
-      foundPlacemark.lat = placemark.lat
-      foundPlacemark.lng = placemark.lng
-      foundPlacemark.zoom = placemark.zoom
+  override fun update(hillfort: HillfortModel) {
+    var foundHillfort: HillfortModel? = hillforts.find { p -> p.id == hillfort.id }
+    if (foundHillfort!= null) {
+      foundHillfort.title = hillfort.title
+      foundHillfort.description = hillfort.description
+      foundHillfort.image = hillfort.image
+      foundHillfort.lat = hillfort.lat
+      foundHillfort.lng = hillfort.lng
+      foundHillfort.zoom = hillfort.zoom
       logAll();
     }
   }
 
   fun logAll() {
-    placemarks.forEach { info("${it}") }
+    hillforts.forEach { info("${it}") }
   }
 }

@@ -8,9 +8,9 @@ import org.jetbrains.anko.AnkoLogger
 import org.cfarrell.hillfort.helpers.*
 import java.util.*
 
-val JSON_FILE = "placemarks.json"
+val JSON_FILE = "hillforts.json"
 val gsonBuilder = GsonBuilder().setPrettyPrinting().create()
-val listType = object : TypeToken<java.util.ArrayList<PlacemarkModel>>() {}.type
+val listType = object : TypeToken<java.util.ArrayList<HillfortModel>>() {}.type
 
 fun generateRandomId(): Long {
   return Random().nextLong()
@@ -19,7 +19,7 @@ fun generateRandomId(): Long {
 class HillfortJSONStore : HillfortStore, AnkoLogger {
 
   val context: Context
-  var placemarks = mutableListOf<PlacemarkModel>()
+  var hillforts = mutableListOf<HillfortModel>()
 
   constructor (context: Context) {
     this.context = context
@@ -28,39 +28,39 @@ class HillfortJSONStore : HillfortStore, AnkoLogger {
     }
   }
 
-  override fun findAll(): MutableList<PlacemarkModel> {
-    return placemarks
+  override fun findAll(): MutableList<HillfortModel> {
+    return hillforts
   }
 
-  override fun create(placemark: PlacemarkModel) {
-    placemark.id = generateRandomId()
-    placemarks.add(placemark)
+  override fun create(hillfort: HillfortModel) {
+    hillfort.id = generateRandomId()
+    hillforts.add(hillfort)
     serialize()
   }
   
 
 
 
-  override fun update(placemark: PlacemarkModel) {
-    var foundPlacemark: PlacemarkModel? = placemarks.find { p -> p.id == placemark.id }
-    if (foundPlacemark != null) {
-      foundPlacemark.title = placemark.title
-      foundPlacemark.description = placemark.description
-      foundPlacemark.image = placemark.image
-      foundPlacemark.lat = placemark.lat
-      foundPlacemark.lng = placemark.lng
-      foundPlacemark.zoom = placemark.zoom
+  override fun update(hillfort: HillfortModel) {
+    var foundHillfort: HillfortModel? = hillforts.find { p -> p.id == hillfort.id }
+    if (foundHillfort!= null) {
+      foundHillfort.title = hillfort.title
+      foundHillfort.description = hillfort.description
+      foundHillfort.image = hillfort.image
+      foundHillfort.lat = hillfort.lat
+      foundHillfort.lng = hillfort.lng
+      foundHillfort.zoom = hillfort.zoom
 serialize()
     }
   }
 
   private fun serialize() {
-    val jsonString = gsonBuilder.toJson(placemarks, listType)
+    val jsonString = gsonBuilder.toJson(hillforts, listType)
     write(context, JSON_FILE, jsonString)
   }
 
   private fun deserialize() {
     val jsonString = read(context, JSON_FILE)
-    placemarks = Gson().fromJson(jsonString, listType)
+    hillforts = Gson().fromJson(jsonString, listType)
   }
 }

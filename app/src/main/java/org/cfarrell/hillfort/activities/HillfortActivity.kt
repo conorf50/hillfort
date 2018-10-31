@@ -15,12 +15,12 @@ import org.cfarrell.hillfort.helpers.readImage
 import org.cfarrell.hillfort.helpers.readImageFromPath
 import org.cfarrell.hillfort.helpers.showImagePicker
 import org.cfarrell.hillfort.main.MainApp
+import org.cfarrell.hillfort.models.HillfortModel
 import org.cfarrell.hillfort.models.Location
-import org.cfarrell.hillfort.models.PlacemarkModel
 
 class HillfortActivity : AppCompatActivity(), AnkoLogger {
 
-  var placemark = PlacemarkModel()
+  var hillfort = HillfortModel()
   lateinit var app: MainApp
   val IMAGE_REQUEST = 1
   val LOCATION_REQUEST = 2
@@ -37,26 +37,26 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
 
     if (intent.hasExtra("placemark_edit")) {
       edit = true
-      placemark = intent.extras.getParcelable<PlacemarkModel>("placemark_edit")
-      placemarkTitle.setText(placemark.title)
-      description.setText(placemark.description)
-      placemarkImage.setImageBitmap(readImageFromPath(this, placemark.image))
-      if (placemark.image != null) {
+      hillfort = intent.extras.getParcelable<HillfortModel>("placemark_edit")
+      placemarkTitle.setText(hillfort.title)
+      description.setText(hillfort.description)
+      placemarkImage.setImageBitmap(readImageFromPath(this, hillfort.image))
+      if (hillfort.image != null) {
         chooseImage.setText(R.string.change_placemark_image)
       }
       btnAdd.setText(R.string.save_placemark)
     }
 
     btnAdd.setOnClickListener() {
-      placemark.title = placemarkTitle.text.toString()
-      placemark.description = description.text.toString()
-      if (placemark.title.isEmpty()) {
+      hillfort.title = placemarkTitle.text.toString()
+      hillfort.description = description.text.toString()
+      if (hillfort.title.isEmpty()) {
         toast(R.string.enter_placemark_title)
       } else {
         if (edit) {
-          app.placemarks.update(placemark.copy())
+          app.hillforts.update(hillfort.copy())
         } else {
-          app.placemarks.create(placemark.copy())
+          app.hillforts.create(hillfort.copy())
         }
       }
       info("add Button Pressed: $placemarkTitle")
@@ -70,10 +70,10 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
 
     placemarkLocation.setOnClickListener {
       val location = Location(52.245696, -7.139102, 15f)
-      if (placemark.zoom != 0f) {
-        location.lat = placemark.lat
-        location.lng = placemark.lng
-        location.zoom = placemark.zoom
+      if (hillfort.zoom != 0f) {
+        location.lat = hillfort.lat
+        location.lng = hillfort.lng
+        location.zoom = hillfort.zoom
       }
       startActivityForResult(intentFor<MapsActivity>().putExtra("location", location), LOCATION_REQUEST)
     }
@@ -98,7 +98,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
     when (requestCode) {
       IMAGE_REQUEST -> {
         if (data != null) {
-          placemark.image = data.getData().toString()
+          hillfort.image = data.getData().toString()
           placemarkImage.setImageBitmap(readImage(this, resultCode, data))
           chooseImage.setText(R.string.change_placemark_image)
         }
@@ -106,9 +106,9 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
       LOCATION_REQUEST -> {
         if (data != null) {
           val location = data.extras.getParcelable<Location>("location")
-          placemark.lat = location.lat
-          placemark.lng = location.lng
-          placemark.zoom = location.zoom
+          hillfort.lat = location.lat
+          hillfort.lng = location.lng
+          hillfort.zoom = location.zoom
         }
       }
     }
