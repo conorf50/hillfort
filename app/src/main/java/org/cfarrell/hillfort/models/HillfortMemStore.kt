@@ -16,7 +16,9 @@ class HillfortMemStore : HillfortStore, AnkoLogger {
   override fun findAll(): List<HillfortModel> {
     return hillforts
   }
-
+  override fun delete(hillfort: HillfortModel) {
+    hillforts.remove(hillfort)
+  }
   override fun create(hillfort: HillfortModel) {
     hillfort.id = getId()
     hillforts.add(hillfort)

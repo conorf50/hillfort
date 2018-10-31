@@ -68,6 +68,8 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
       showImagePicker(this, IMAGE_REQUEST)
     }
 
+
+    // todo add delete button + definition
     hillfortLocation.setOnClickListener {
       val location = Location(52.245696, -7.139102, 15f)
       if (hillfort.zoom != 0f) {
@@ -86,12 +88,24 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
 
   override fun onOptionsItemSelected(item: MenuItem?): Boolean {
     when (item?.itemId) {
+      // when the cancel button is pressed on the menu, kill this activity and return to previous activity
       R.id.item_cancel -> {
         finish()
       }
+
+      R.id.item_delete -> {
+        info { "DELETE BUTTON PRESSED" }
+
+      }
+
     }
+
     return super.onOptionsItemSelected(item)
   }
+
+
+
+
 
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
     super.onActivityResult(requestCode, resultCode, data)
