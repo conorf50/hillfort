@@ -3,10 +3,8 @@ package org.cfarrell.hillfort.activities
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.design.widget.FloatingActionButton
 import android.support.v7.widget.LinearLayoutManager
 import android.view.*
-import android.widget.Button
 import kotlinx.android.synthetic.main.activity_hillfort_list.*
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.startActivityForResult
@@ -31,6 +29,7 @@ class HillfortListActivity : AppCompatActivity(), HillfortListener {
     val fab: View = findViewById(R.id.fab_add)
     fab.setOnClickListener { view ->
       startActivityForResult<HillfortActivity>(0)
+
     }
 
 
