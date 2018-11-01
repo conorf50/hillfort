@@ -43,8 +43,10 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
       hillfort = intent.extras.getParcelable<HillfortModel>("hillfort edit")
       hillfortTitle.setText(hillfort.title)
       description.setText(hillfort.description)
-      hillfortImage.setImageBitmap(readImageFromPath(this, hillfort.image))
-      if (hillfort.image != null) {
+        // todo undo this hardcoding for now
+      hillfortImage.setImageBitmap(readImageFromPath(this, hillfort.images[0]))
+      // todo add length check in here
+        if (hillfort.images != null) {
         chooseImage.setText(R.string.change_hillfort_image)
       }
       btnAdd.setText(R.string.save_hillfort)
@@ -66,8 +68,8 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
       setResult(AppCompatActivity.RESULT_OK)
       // todo display snackbar confiming placemark add
       // todo add this snackbar to the hillfortList view instead of this one
-      Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-              .setAction("Action", null).show()
+//      Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//              .setAction("Action", null).show()
       finish()
     }
 
@@ -138,7 +140,8 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
     when (requestCode) {
       IMAGE_REQUEST -> {
         if (data != null) {
-          hillfort.image = data.getData().toString()
+            // todo add proper length checking
+          hillfort.images[0] = data.getData().toString()
           hillfortImage.setImageBitmap(readImage(this, resultCode, data))
           chooseImage.setText(R.string.change_hillfort_image)
         }
