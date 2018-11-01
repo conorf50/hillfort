@@ -43,10 +43,8 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
       hillfort = intent.extras.getParcelable<HillfortModel>("hillfort edit")
       hillfortTitle.setText(hillfort.title)
       description.setText(hillfort.description)
-        // todo undo this hardcoding for now
-      hillfortImage.setImageBitmap(readImageFromPath(this, hillfort.images[0]))
-      // todo add length check in here
-        if (hillfort.images != null) {
+      hillfortImage.setImageBitmap(readImageFromPath(this, hillfort.image))
+        if (hillfort.image != null) {
         chooseImage.setText(R.string.change_hillfort_image)
       }
       btnAdd.setText(R.string.save_hillfort)
@@ -55,6 +53,8 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
     btnAdd.setOnClickListener() {view ->
       hillfort.title = hillfortTitle.text.toString()
       hillfort.description = description.text.toString()
+
+      // todo fix the activity close on incorrect title
       if (hillfort.title.isEmpty()) {
         toast(R.string.enter_hillfort_title)
       } else {
@@ -140,8 +140,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
     when (requestCode) {
       IMAGE_REQUEST -> {
         if (data != null) {
-            // todo add proper length checking
-          hillfort.images[0] = data.getData().toString()
+          hillfort.image = data.getData().toString()
           hillfortImage.setImageBitmap(readImage(this, resultCode, data))
           chooseImage.setText(R.string.change_hillfort_image)
         }
