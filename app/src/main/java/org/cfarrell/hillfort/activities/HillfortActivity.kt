@@ -1,15 +1,18 @@
 package org.cfarrell.hillfort.activities
 
 import android.app.Dialog
+import android.app.ProgressDialog.show
 import android.content.DialogInterface
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.support.v7.app.AlertDialog
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_hllfort.*
+import kotlinx.android.synthetic.main.notification_media_cancel_action.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import org.jetbrains.anko.intentFor
@@ -92,6 +95,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
   }
 
   override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+
     when (item?.itemId) {
       // when the cancel button is pressed on the menu, kill this activity and return to previous activity
       R.id.item_cancel -> {
@@ -99,14 +103,29 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
       }
 
       R.id.item_delete -> {
+        // create a dialog box that prompts the user to confirm the delete
+        // source: https://code.tutsplus.com/tutorials/showing-material-design-dialogs-in-an-android-app--cms-30013
+        AlertDialog.Builder(this)
+                .setTitle("Delete Hillfort?")
+                .setMessage("Are you aure that you want to delete this hillfort entry?.")
+                .setPositiveButton("Yes") { dialog, which -> app.hillforts.delete(hillfort)
+                    finish()
+                }
+                .setNegativeButton("Cancel") { dialog, which -> cancel_action
+                }
+                .show()
         info { "DELETE BUTTON PRESSED" }
-        // todo prompt user before delete!
+
         // todo add snackbar confirming hillfort deletion
-        app.hillforts.delete(hillfort)
-        finish()
+
+
       }
 
     }
+
+
+
+
 
     return super.onOptionsItemSelected(item)
   }
