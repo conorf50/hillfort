@@ -57,11 +57,17 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
       // todo fix the activity close on incorrect title
       if (hillfort.title.isEmpty()) {
         toast(R.string.enter_hillfort_title)
-      } else {
+      }
+
+      else {
         if (edit) {
           app.hillforts.update(hillfort.copy())
+          finish()
+
         } else {
           app.hillforts.create(hillfort.copy())
+          finish()
+
         }
       }
       info("add Button Pressed: $hillfortTitle")
@@ -70,7 +76,6 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
       // todo add this snackbar to the hillfortList view instead of this one
 //      Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //              .setAction("Action", null).show()
-      finish()
     }
 
     chooseImage.setOnClickListener {
