@@ -1,8 +1,12 @@
 package org.cfarrell.hillfort.activities
 
+import android.app.Dialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.app.DialogFragment
+import android.support.v7.app.AlertDialog
 import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_hllfort.*
@@ -132,4 +136,5 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
     }
   }
 }
+
 
