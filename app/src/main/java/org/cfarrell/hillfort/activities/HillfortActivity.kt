@@ -34,13 +34,13 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
   override fun onCreate(savedInstanceState: Bundle?) {
     imageUrls.add("https://cdn.pixabay.com/photo/2017/10/10/15/28/butterfly-2837589_960_720.jpg")
     imageUrls.add("https://cdn.pixabay.com/photo/2017/12/24/09/09/road-3036620_960_720.jpg")
-    val viewPager= findViewById<ViewPager>(R.id.view_pager)
 
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_hllfort)
     toolbarAdd.title = title
     setSupportActionBar(toolbarAdd)
     info("Hillfort Activity started..")
+    val viewPager= findViewById<ViewPager>(R.id.view_pager)
 
     app = application as MainApp
     var edit = false
@@ -163,10 +163,12 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
       IMAGE_REQUEST -> {
         if (data != null) {
           hillfort.image = data.getData().toString()
-          // call the viewPager method again
+          // set the displayed image to the new one selected
           //hillfortImage.setImageBitmap(readImage(this, resultCode, data))
-          val adapter = ImageViewPagerHelper(this, imageUrls)
-          viewPager.setAdapter(adapter)
+
+
+          // val adapter = ImageViewPagerHelper(this, imageUrls)
+          //viewPager.setAdapter(adapter)
           chooseImage.setText(R.string.change_hillfort_image)
         }
       }
