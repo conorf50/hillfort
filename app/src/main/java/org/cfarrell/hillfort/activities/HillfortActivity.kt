@@ -44,7 +44,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
       hillfortTitle.setText(hillfort.title)
       description.setText(hillfort.description)
       hillfortImage.setImageBitmap(readImageFromPath(this, hillfort.image))
-      if (hillfort.image != null) {
+        if (hillfort.image != null) {
         chooseImage.setText(R.string.change_hillfort_image)
       }
       btnAdd.setText(R.string.save_hillfort)
@@ -53,22 +53,29 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
     btnAdd.setOnClickListener() {view ->
       hillfort.title = hillfortTitle.text.toString()
       hillfort.description = description.text.toString()
+
+      // todo fix the activity close on incorrect title
       if (hillfort.title.isEmpty()) {
         toast(R.string.enter_hillfort_title)
-      } else {
+      }
+
+      else {
         if (edit) {
           app.hillforts.update(hillfort.copy())
+          finish()
+
         } else {
           app.hillforts.create(hillfort.copy())
+          finish()
+
         }
       }
       info("add Button Pressed: $hillfortTitle")
       setResult(AppCompatActivity.RESULT_OK)
       // todo display snackbar confiming placemark add
       // todo add this snackbar to the hillfortList view instead of this one
-      Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-              .setAction("Action", null).show()
-      finish()
+//      Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//              .setAction("Action", null).show()
     }
 
     chooseImage.setOnClickListener {
