@@ -3,7 +3,6 @@ package org.cfarrell.hillfort.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AlertDialog
 import android.view.Menu
 import android.view.MenuItem
@@ -20,6 +19,8 @@ import org.cfarrell.hillfort.helpers.showImagePicker
 import org.cfarrell.hillfort.main.MainApp
 import org.cfarrell.hillfort.models.HillfortModel
 import org.cfarrell.hillfort.models.Location
+import androidx.viewpager.widget.ViewPager
+import org.cfarrell.hillfort.helpers.showImagePicker
 
 class HillfortActivity : AppCompatActivity(), AnkoLogger {
 
@@ -29,6 +30,8 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
   val LOCATION_REQUEST = 2
 
   override fun onCreate(savedInstanceState: Bundle?) {
+    val viewPager= findViewById<ViewPager>(R.id.view_pager)
+
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_hllfort)
     toolbarAdd.title = title
@@ -43,8 +46,16 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
       hillfort = intent.extras.getParcelable<HillfortModel>("hillfort edit")
       hillfortTitle.setText(hillfort.title)
       description.setText(hillfort.description)
-      hillfortImage.setImageBitmap(readImageFromPath(this, hillfort.image))
-        if (hillfort.image != null) {
+
+
+      // here the imageView is being populated with the image bitmap obtained from the ImageHelper
+      //view_pager.setImageBitmap(readImageFromPath(this, hillfort.image))
+      val adapter = ViewPagerHelper(this, imageUrls)
+      viewPager.setAdapter(adapter)
+
+
+
+      if (hillfort.image != null) {
         chooseImage.setText(R.string.change_hillfort_image)
       }
       btnAdd.setText(R.string.save_hillfort)
