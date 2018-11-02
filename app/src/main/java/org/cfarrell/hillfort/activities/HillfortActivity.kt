@@ -7,6 +7,7 @@ import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AlertDialog
 import android.view.Menu
 import android.view.MenuItem
+import kotlinx.android.synthetic.main.abc_activity_chooser_view.view.*
 import kotlinx.android.synthetic.main.activity_hllfort.*
 import kotlinx.android.synthetic.main.notification_media_cancel_action.*
 import org.jetbrains.anko.AnkoLogger
@@ -40,6 +41,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
 
     if (intent.hasExtra("hillfort edit")) {
       edit = true
+      //todo disable delete button if a new hillfort is being created
       hillfort = intent.extras.getParcelable<HillfortModel>("hillfort edit")
       hillfortTitle.setText(hillfort.title)
       description.setText(hillfort.description)
@@ -54,7 +56,6 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
       hillfort.title = hillfortTitle.text.toString()
       hillfort.description = description.text.toString()
 
-      // todo fix the activity close on incorrect title
       if (hillfort.title.isEmpty()) {
         toast(R.string.enter_hillfort_title)
       }
