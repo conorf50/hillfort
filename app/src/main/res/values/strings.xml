@@ -13,7 +13,7 @@
   <string name="change_hillfort_image">Change hillfort image</string>
   <string name="button_location">Set Location</string>
   <string name="title_activity_maps">Map</string>
-
+  <string name="button_deleteImage">Delete Image</string>
   <string name="dialog_delete_hillfort">Delete Hillfort?</string>
   <string name="dialog_yes_delete_hillfort">YES</string>
   <string name="dialog_no_delete_hillfort">NO</string>

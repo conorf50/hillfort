@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import kotlinx.android.synthetic.main.activity_hllfort.*
 import kotlinx.android.synthetic.main.notification_media_cancel_action.*
 import org.jetbrains.anko.AnkoLogger
@@ -100,6 +101,15 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
       // todo add this snackbar to the hillfortList view instead of this one
 
     }
+
+
+
+      // listener for the deleteImage button
+      val buttonDeleteImage: View = findViewById(R.id.deleteImage)
+      buttonDeleteImage.setVisibility(View.VISIBLE)
+      buttonDeleteImage.setOnClickListener { view ->
+            toast("deleting image")
+      }
 
     chooseImage.setOnClickListener {
 //      val viewPager= findViewById<ViewPager>(R.id.view_pager)
