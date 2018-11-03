@@ -40,14 +40,15 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
     toolbarAdd.title = title
     setSupportActionBar(toolbarAdd)
       val buttonDeleteImage: View = findViewById(R.id.deleteImage)
-      buttonDeleteImage.setVisibility(View.VISIBLE)
+      // hide the delete button for now as it causes bugs
+      buttonDeleteImage.setVisibility(View.GONE)
 
 
     info("Hillfort Activity started..")
 
     app = application as MainApp
     var edit = false
-    toast("hillfort" + hillfort)
+    //toast("hillfort" + hillfort)
 
     if (intent.hasExtra("hillfort edit")) {
       val viewPager= findViewById<ViewPager>(R.id.view_pager)
@@ -56,7 +57,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
       hillfort = intent.extras.getParcelable<HillfortModel>("hillfort edit")
       hillfortTitle.setText(hillfort.title)
       description.setText(hillfort.description)
-        toast("HF Image" + hillfort.image)
+        //toast("HF Image" + hillfort.image)
       // add the hillfort image to the viewpager
       //imageUrls = hillfort.image)
        hillfort.image.forEach { imageUrls.add(it) }
@@ -190,13 +191,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
       IMAGE_REQUEST -> {
         if (data != null) {
           imageUrls.add( data.getData().toString())
-          //hillfort.image = imageUrls
-          //hillfort.image.forEach { imageUrls.add(it) }
-
-            imageUrls.forEach { hillfort.image.add(it) }
-          toast ( "FOUND IMAGE = "+ imageUrls)
-
-
+          imageUrls.forEach { hillfort.image.add(it) }
           // call the viewpager object
           val adapter = ImageViewPagerHelper(this, hillfort.image)
             viewPager.setAdapter(adapter)
