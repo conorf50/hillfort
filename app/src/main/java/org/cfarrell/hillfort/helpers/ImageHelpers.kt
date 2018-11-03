@@ -35,9 +35,11 @@ fun showImagePicker(parent: Activity, id: Int) {
 
 // gets a preview of the image and displays it to the user in the hillfort card.
 // todo rewrite this to return the first element in the array if it exists
-fun readImageFromPath(context: Context, path: String): Bitmap? {
+fun readImageFromPath(context: Context, path: ArrayList<String>): Bitmap? {
   var bitmap: Bitmap? = null
-  val uri = Uri.parse(path)
+    // set the image bitmap to be the first in the hillfort array object
+  //val uri = Uri.parse(path.first())
+  val uri  = Uri.parse("")
   if (uri != null) {
     try {
       val parcelFileDescriptor = context.getContentResolver().openFileDescriptor(uri, "r")

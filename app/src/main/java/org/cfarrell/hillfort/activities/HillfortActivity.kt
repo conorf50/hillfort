@@ -42,6 +42,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
 
     app = application as MainApp
     var edit = false
+    toast("hillfort" + hillfort)
 
     if (intent.hasExtra("hillfort edit")) {
       val viewPager= findViewById<ViewPager>(R.id.view_pager)
