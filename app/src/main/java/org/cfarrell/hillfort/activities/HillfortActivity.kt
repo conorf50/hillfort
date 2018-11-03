@@ -108,7 +108,12 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
       val buttonDeleteImage: View = findViewById(R.id.deleteImage)
       buttonDeleteImage.setVisibility(View.VISIBLE)
       buttonDeleteImage.setOnClickListener { view ->
-            toast("deleting image")
+        val viewPager= findViewById<ViewPager>(R.id.view_pager)
+        val adapter = ImageViewPagerHelper(this, imageUrls)
+        viewPager.setAdapter(adapter)
+            toast("deleting image at" + viewPager.currentItem)
+        imageUrls.removeAt(viewPager.currentItem)
+        adapter.notifyDataSetChanged()
       }
 
     chooseImage.setOnClickListener {
