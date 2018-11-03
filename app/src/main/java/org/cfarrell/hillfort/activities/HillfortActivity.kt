@@ -28,6 +28,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
   lateinit var app: MainApp
   val IMAGE_REQUEST = 1
   val LOCATION_REQUEST = 2
+  val IMAGE_DELETE_REQUEST = 3
   private val imageUrls = arrayListOf<String>()
 
 
@@ -37,6 +38,10 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
     setContentView(R.layout.activity_hllfort)
     toolbarAdd.title = title
     setSupportActionBar(toolbarAdd)
+      val buttonDeleteImage: View = findViewById(R.id.deleteImage)
+      buttonDeleteImage.setVisibility(View.VISIBLE)
+
+
     info("Hillfort Activity started..")
 
     app = application as MainApp
@@ -99,17 +104,21 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
 
 
       // listener for the deleteImage button
-      val buttonDeleteImage: View = findViewById(R.id.deleteImage)
-      buttonDeleteImage.setVisibility(View.VISIBLE)
-      buttonDeleteImage.setOnClickListener { view ->
 
-        val viewPager= findViewById<ViewPager>(R.id.view_pager)
 
-        toast("deleting image at" + viewPager.currentItem)
 
-      }
+//      buttonDeleteImage.setOnClickListener {
+//          view ->
+//
+//        val viewPager= findViewById<ViewPager>(R.id.view_pager)
+//
+//        //toast("deleting image at" + viewPager.currentItem)
+//          // hillfort image is currently null
+//
+//      }
 
     chooseImage.setOnClickListener {
+        // this is a check to limit the amount of images a user can add
         if (imageUrls.size <= 4){
             showImagePicker(this, IMAGE_REQUEST)
         }
@@ -193,6 +202,23 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
           chooseImage.setText(R.string.change_hillfort_image)
         }
       }
+        IMAGE_DELETE_REQUEST -> { // when we want to delete a hilfort image
+            if (data != null) {
+                imageUrls.add( data.getData().toString())
+                //hillfort.image = imageUrls
+                // remove the item at the same index as the viewpager location
+                imageUrls.removeAt(viewPager.currentItem)
+
+
+                // call the viewpager object
+                val adapter = ImageViewPagerHelper(this, imageUrls)
+                viewPager.setAdapter(adapter)
+
+                adapter.notifyDataSetChanged() //update the viewpager view with the new image
+            }
+        }
+
+
       LOCATION_REQUEST -> {
         if (data != null) {
           val location = data.extras.getParcelable<Location>("location")
