@@ -19,33 +19,27 @@ fun showImagePicker(parent: Activity, id: Int) {
   parent.startActivityForResult(chooser, id)
 }
 
-//fun readImage(activity: Activity, resultCode: Int, data: Intent?): Bitmap? {
-//  var bitmap: Bitmap? = null
-//  if (resultCode == Activity.RESULT_OK && data != null && data.data != null) try {
-//    bitmap = MediaStore.Images.Media.getBitmap(activity.contentResolver, data.data)
-//  } catch (e: IOException) {
-//    e.printStackTrace()
-//  }
-//  return bitmap
-//}
 
-
-
-
-
-// gets a preview of the image and displays it to the user in the hillfort card.
-// todo rewrite this to return the first element in the array if it exists
-fun readImageFromPath(context: Context, path: String): Bitmap? {
+fun readImageFromPath(context: Context, path: ArrayList<String>): Bitmap? {
   var bitmap: Bitmap? = null
-  val uri = Uri.parse(path)
-  if (uri != null) {
-    try {
-      val parcelFileDescriptor = context.getContentResolver().openFileDescriptor(uri, "r")
-      val fileDescriptor = parcelFileDescriptor.getFileDescriptor()
-      bitmap = BitmapFactory.decodeFileDescriptor(fileDescriptor)
-      parcelFileDescriptor.close()
-    } catch (e: Exception) {
+  // set the image bitmap to be the first in the hillfort array object
+  //val uri = Uri.parse(path.first())
+
+  try {
+    val uri  = Uri.parse(path.first()) // parse the first element if it exists
+    if (uri != null) {
+      try {
+        val parcelFileDescriptor = context.getContentResolver().openFileDescriptor(uri, "r")
+        val fileDescriptor = parcelFileDescriptor.getFileDescriptor()
+        bitmap = BitmapFactory.decodeFileDescriptor(fileDescriptor)
+        parcelFileDescriptor.close()
+      } catch (e: Exception) {
+      }
     }
   }
+  catch (e: java.lang.Exception){
+    val uri  = Uri.parse("") // set the URI to be blank otherwise
+  }
+
   return bitmap
 }
