@@ -33,8 +33,8 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
   override fun onCreate(savedInstanceState: Bundle?) {
   //imageUrls.add("https://cdn.pixabay.com/photo/2017/10/10/15/28/butterfly-2837589_960_720.jpg")
 //    imageUrls.add("https://cdn.pixabay.com/photo/2017/12/24/09/09/road-3036620_960_720.jpg")
-
-    super.onCreate(savedInstanceState)
+    imageUrls.clear() // clear the image urls array
+     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_hllfort)
     toolbarAdd.title = title
     setSupportActionBar(toolbarAdd)
@@ -46,7 +46,6 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
     if (intent.hasExtra("hillfort edit")) {
       val viewPager= findViewById<ViewPager>(R.id.view_pager)
 
-      toast("HIllfort image" + hillfort.image)
       edit = true
       hillfort = intent.extras.getParcelable<HillfortModel>("hillfort edit")
       hillfortTitle.setText(hillfort.title)
@@ -56,7 +55,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
       imageUrls.add(hillfort.image.toString())
 
 
-
+      toast("hilfort image " + imageUrls.toString())
       //here the imageView is being populated with the list of image URIs
       val adapter = ImageViewPagerHelper(this, imageUrls)
       viewPager.setAdapter(adapter)
