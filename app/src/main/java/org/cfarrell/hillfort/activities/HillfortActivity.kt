@@ -52,12 +52,12 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
       description.setText(hillfort.description)
 
       // add the hillfort image to the viewpager
-      imageUrls.add(hillfort.image.toString())
+      //imageUrls = hillfort.image)
 
 
       toast("hilfort image " + imageUrls.toString())
       //here the imageView is being populated with the list of image URIs
-      val adapter = ImageViewPagerHelper(this, imageUrls)
+      val adapter = ImageViewPagerHelper(this, hillfort.image)
       viewPager.setAdapter(adapter)
       adapter.notifyDataSetChanged() // update the viewpager
 
