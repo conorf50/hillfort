@@ -178,8 +178,13 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
       IMAGE_REQUEST -> {
         if (data != null) {
           hillfort.image.clear() // clear the hillfort image so old images are purged
-          imageUrls.add( data.getData().toString())
-          hillfort.image = imageUrls
+          if (imageUrls.size < 5) {
+            imageUrls.add( data.getData().toString())
+            hillfort.image = imageUrls
+          }
+          else{
+            toast("Max amount of images added")
+          }
           // set the displayed image to the new one selected
           //hillfortImage.setImageBitmap(readImage(this, resultCode, data))
 
