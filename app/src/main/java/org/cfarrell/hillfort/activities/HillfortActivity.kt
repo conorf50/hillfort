@@ -55,14 +55,14 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
       hillfort = intent.extras.getParcelable<HillfortModel>("hillfort edit")
       hillfortTitle.setText(hillfort.title)
       description.setText(hillfort.description)
-
+        toast("HF Image" + hillfort.image)
       // add the hillfort image to the viewpager
       //imageUrls = hillfort.image)
+       hillfort.image.forEach { imageUrls.add(it) }
 
-
-      toast("hilfort image " + imageUrls.toString())
+      //toast("hilfort image " + imageUrls.toString())
       //here the imageView is being populated with the list of image URIs
-      val adapter = ImageViewPagerHelper(this, hillfort.image)
+      val adapter = ImageViewPagerHelper(this, imageUrls)
       viewPager.setAdapter(adapter)
       adapter.notifyDataSetChanged() // update the viewpager
 
@@ -78,6 +78,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
       hillfort.title = hillfortTitle.text.toString()
       hillfort.description = description.text.toString()
 
+      // add the images from the imageUrl array to hillfort.image
       // todo fix the activity close on incorrect title
       if (hillfort.title.isEmpty()) {
         toast(R.string.enter_hillfort_title)
@@ -105,17 +106,15 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
 
       // listener for the deleteImage button
 
+      buttonDeleteImage.setOnClickListener {
+          view ->
 
+        val viewPager= findViewById<ViewPager>(R.id.view_pager)
 
-//      buttonDeleteImage.setOnClickListener {
-//          view ->
-//
-//        val viewPager= findViewById<ViewPager>(R.id.view_pager)
-//
-//        //toast("deleting image at" + viewPager.currentItem)
-//          // hillfort image is currently null
-//
-//      }
+        //toast("deleting image at" + viewPager.currentItem)
+          // hillfort image is currently null
+
+      }
 
     chooseImage.setOnClickListener {
         // this is a check to limit the amount of images a user can add
