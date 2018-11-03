@@ -44,13 +44,13 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
     var edit = false
 
     if (intent.hasExtra("hillfort edit")) {
-      val viewPager= findViewById<ViewPager>(R.id.view_pager)
+      //val viewPager= findViewById<ViewPager>(R.id.view_pager)
       // here the imageView is being populated with the list of image URIs
-      val adapter = ImageViewPagerHelper(this, imageUrls)
-      viewPager.setAdapter(adapter)
+      //val adapter = ImageViewPagerHelper(this, imageUrls)
+      //viewPager.setAdapter(adapter)
 
 
-      adapter.notifyDataSetChanged() // update the viewpager
+      //adapter.notifyDataSetChanged() // update the viewpager
       edit = true
       hillfort = intent.extras.getParcelable<HillfortModel>("hillfort edit")
       hillfortTitle.setText(hillfort.title)
@@ -70,12 +70,12 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
     }
 
     btnAdd.setOnClickListener() {view ->
-      val viewPager= findViewById<ViewPager>(R.id.view_pager)
-
-      val adapter = ImageViewPagerHelper(this, imageUrls)
-      viewPager.setAdapter(adapter)
-
-      adapter.notifyDataSetChanged() //update the viewpager view with the new image
+//      val viewPager= findViewById<ViewPager>(R.id.view_pager)
+//
+//      val adapter = ImageViewPagerHelper(this, imageUrls)
+//      viewPager.setAdapter(adapter)
+//
+//      adapter.notifyDataSetChanged() //update the viewpager view with the new image
       hillfort.title = hillfortTitle.text.toString()
       hillfort.description = description.text.toString()
 
@@ -99,18 +99,17 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
       setResult(AppCompatActivity.RESULT_OK)
       // todo display snackbar confiming placemark add
       // todo add this snackbar to the hillfortList view instead of this one
-//      Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//              .setAction("Action", null).show()
+
     }
 
     chooseImage.setOnClickListener {
-      val viewPager= findViewById<ViewPager>(R.id.view_pager)
-      val adapter = ImageViewPagerHelper(this, imageUrls)
+//      val viewPager= findViewById<ViewPager>(R.id.view_pager)
+//      val adapter = ImageViewPagerHelper(this, imageUrls)
 
         showImagePicker(this, IMAGE_REQUEST)
-      viewPager.setAdapter(adapter)
-
-      adapter.notifyDataSetChanged() //update the viewpager view with the new image
+//      viewPager.setAdapter(adapter)
+//
+//      adapter.notifyDataSetChanged() //update the viewpager view with the new image
     }
 
 
@@ -181,11 +180,10 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
           //hillfortImage.setImageBitmap(readImage(this, resultCode, data))
 
           // call the viewpager object
+          //val adapter = ImageViewPagerHelper(this, imageUrls)
+            //viewPager.setAdapter(adapter)
 
-          val adapter = ImageViewPagerHelper(this, imageUrls)
-            viewPager.setAdapter(adapter)
-
-            adapter.notifyDataSetChanged() //update the viewpager view with the new image
+            //adapter.notifyDataSetChanged() //update the viewpager view with the new image
           chooseImage.setText(R.string.change_hillfort_image)
         }
       }
