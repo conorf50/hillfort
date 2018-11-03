@@ -38,7 +38,6 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
     setContentView(R.layout.activity_hllfort)
     toolbarAdd.title = title
     setSupportActionBar(toolbarAdd)
-    info("Hillfort Activity started..")
 
     app = application as MainApp
     var edit = false
@@ -168,18 +167,17 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
     val viewPager= findViewById<ViewPager>(R.id.view_pager)
 
     when (requestCode) {
+      // when we request an image update
       IMAGE_REQUEST -> {
         if (data != null) {
           imageUrls.add( data.getData().toString())
           hillfort.image = imageUrls
-          info { "FOUND IMAGE = "+ hillfort.image}
-            toast("Image location: " + hillfort.image
-                    + "Size" + imageUrls.size)
+            toast("Image location: " + hillfort.image)
           // set the displayed image to the new one selected
           //hillfortImage.setImageBitmap(readImage(this, resultCode, data))
 
           // call the viewpager object
-          val adapter = ImageViewPagerHelper(this, imageUrls)
+          val adapter = ImageViewPagerHelper(this, hillfort.image)
             viewPager.setAdapter(adapter)
 
             adapter.notifyDataSetChanged() //update the viewpager view with the new image
