@@ -57,7 +57,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
       description.setText(hillfort.description)
 
       // add the hillfort image to the viewpager
-      imageUrls.add(hillfort.image)
+      imageUrls.add(hillfort.image.toString())
 
 
 
@@ -172,9 +172,9 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
     when (requestCode) {
       IMAGE_REQUEST -> {
         if (data != null) {
-          hillfort.image = data.getData().toString()
+          imageUrls.add( data.getData().toString())
+          hillfort.image = imageUrls
           info { "FOUND IMAGE = "+ hillfort.image}
-          imageUrls.add(hillfort.image)
             toast("Image location: " + hillfort.image
                     + "Size" + imageUrls.size)
           // set the displayed image to the new one selected
