@@ -32,8 +32,8 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
 
 
   override fun onCreate(savedInstanceState: Bundle?) {
-    imageUrls.add("https://cdn.pixabay.com/photo/2017/10/10/15/28/butterfly-2837589_960_720.jpg")
-    imageUrls.add("https://cdn.pixabay.com/photo/2017/12/24/09/09/road-3036620_960_720.jpg")
+  imageUrls.add("https://cdn.pixabay.com/photo/2017/10/10/15/28/butterfly-2837589_960_720.jpg")
+//    imageUrls.add("https://cdn.pixabay.com/photo/2017/12/24/09/09/road-3036620_960_720.jpg")
 
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_hllfort)
@@ -163,12 +163,17 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
       IMAGE_REQUEST -> {
         if (data != null) {
           hillfort.image = data.getData().toString()
+
+          imageUrls.add(hillfort.image)
+            toast("Image location: " + hillfort.image
+                    + "Size" + imageUrls.size)
           // set the displayed image to the new one selected
           //hillfortImage.setImageBitmap(readImage(this, resultCode, data))
 
 
-          // val adapter = ImageViewPagerHelper(this, imageUrls)
-          //viewPager.setAdapter(adapter)
+           val adapter = ImageViewPagerHelper(this, imageUrls)
+          adapter.notifyDataSetChanged() //update the viewpager view with the new image
+          viewPager.setAdapter(adapter)
           chooseImage.setText(R.string.change_hillfort_image)
         }
       }
