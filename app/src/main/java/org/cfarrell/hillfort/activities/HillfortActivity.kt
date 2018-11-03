@@ -46,7 +46,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
     if (intent.hasExtra("hillfort edit")) {
       val viewPager= findViewById<ViewPager>(R.id.view_pager)
 
-
+      toast("HIllfort image" + hillfort.image)
       edit = true
       hillfort = intent.extras.getParcelable<HillfortModel>("hillfort edit")
       hillfortTitle.setText(hillfort.title)
