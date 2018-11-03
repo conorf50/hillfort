@@ -176,15 +176,13 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
     when (requestCode) {
       // when we request an image update
       IMAGE_REQUEST -> {
-        if (data != null) {
+        if (data != null && imageUrls.size < 5) {
           hillfort.image.clear() // clear the hillfort image so old images are purged
-          if (imageUrls.size < 5) {
+//          if (imageUrls.size < 5) {
             imageUrls.add( data.getData().toString())
             hillfort.image = imageUrls
-          }
-          else{
-            toast("Max amount of images added")
-          }
+//          }
+
           // set the displayed image to the new one selected
           //hillfortImage.setImageBitmap(readImage(this, resultCode, data))
 
@@ -194,6 +192,9 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
 
             adapter.notifyDataSetChanged() //update the viewpager view with the new image
           chooseImage.setText(R.string.change_hillfort_image)
+        }
+        else{
+          toast("Max amount of images added")
         }
       }
       LOCATION_REQUEST -> {
