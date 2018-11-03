@@ -114,6 +114,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
 
     // todo add delete button + definition
     hillfortLocation.setOnClickListener {
+        // this is the default location of WIT
       val location = Location(52.245696, -7.139102, 15f)
       if (hillfort.zoom != 0f) {
         location.lat = hillfort.lat
