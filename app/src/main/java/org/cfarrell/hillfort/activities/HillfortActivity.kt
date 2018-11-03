@@ -14,13 +14,13 @@ import org.jetbrains.anko.info
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.toast
 import org.cfarrell.hillfort.R
-import org.cfarrell.hillfort.helpers.readImageFromPath
 import org.cfarrell.hillfort.helpers.showImagePicker
 import org.cfarrell.hillfort.main.MainApp
 import org.cfarrell.hillfort.models.HillfortModel
 import org.cfarrell.hillfort.models.Location
 import androidx.viewpager.widget.ViewPager
 import org.cfarrell.hillfort.helpers.ImageViewPagerHelper
+
 
 class HillfortActivity : AppCompatActivity(), AnkoLogger {
 
@@ -108,12 +108,11 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
       val buttonDeleteImage: View = findViewById(R.id.deleteImage)
       buttonDeleteImage.setVisibility(View.VISIBLE)
       buttonDeleteImage.setOnClickListener { view ->
+
         val viewPager= findViewById<ViewPager>(R.id.view_pager)
-        val adapter = ImageViewPagerHelper(this, imageUrls)
-        viewPager.setAdapter(adapter)
-            toast("deleting image at" + viewPager.currentItem)
-        imageUrls.removeAt(viewPager.currentItem)
-        adapter.notifyDataSetChanged()
+
+        toast("deleting image at" + viewPager.currentItem)
+
       }
 
     chooseImage.setOnClickListener {
@@ -127,7 +126,6 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
     }
 
 
-    // todo add delete button + definition
     hillfortLocation.setOnClickListener {
         // this is the default location of WIT
       val location = Location(52.245696, -7.139102, 15f)
@@ -189,8 +187,8 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
           imageUrls.add( data.getData().toString())
           hillfort.image = imageUrls
           info { "FOUND IMAGE = "+ hillfort.image}
-            toast("Image location: " + hillfort.image
-                    + "Size" + imageUrls.size)
+//            toast("Image location: " + hillfort.image
+//                    + "Size" + imageUrls.size)
           // set the displayed image to the new one selected
           //hillfortImage.setImageBitmap(readImage(this, resultCode, data))
 
