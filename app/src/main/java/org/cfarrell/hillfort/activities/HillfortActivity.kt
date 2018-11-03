@@ -176,7 +176,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
     when (requestCode) {
       // when we request an image update
       IMAGE_REQUEST -> {
-        if (data != null && imageUrls.size < 5) {
+        if (data != null) {
           hillfort.image.clear() // clear the hillfort image so old images are purged
 //          if (imageUrls.size < 5) {
             imageUrls.add( data.getData().toString())
