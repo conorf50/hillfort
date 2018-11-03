@@ -19,6 +19,7 @@ import org.cfarrell.hillfort.main.MainApp
 import org.cfarrell.hillfort.models.HillfortModel
 import org.cfarrell.hillfort.models.Location
 import androidx.viewpager.widget.ViewPager
+import kotlinx.android.synthetic.main.abc_activity_chooser_view.*
 import org.cfarrell.hillfort.helpers.ImageViewPagerHelper
 
 
@@ -182,6 +183,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
     super.onActivityResult(requestCode, resultCode, data)
     val viewPager= findViewById<ViewPager>(R.id.view_pager)
+      imageUrls.clear()
 
     //when the Change image button is pressed
     when (requestCode) {
@@ -189,33 +191,35 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
         if (data != null) {
           imageUrls.add( data.getData().toString())
           //hillfort.image = imageUrls
-          hillfort.image.forEach { imageUrls.add(it) }
-          info { "FOUND IMAGE = "+ hillfort.image}
+          //hillfort.image.forEach { imageUrls.add(it) }
+
+            imageUrls.forEach { hillfort.image.add(it) }
+          toast ( "FOUND IMAGE = "+ imageUrls)
 
 
           // call the viewpager object
-          val adapter = ImageViewPagerHelper(this, imageUrls)
+          val adapter = ImageViewPagerHelper(this, hillfort.image)
             viewPager.setAdapter(adapter)
 
             adapter.notifyDataSetChanged() //update the viewpager view with the new image
           chooseImage.setText(R.string.change_hillfort_image)
         }
       }
-        IMAGE_DELETE_REQUEST -> { // when we want to delete a hilfort image
-            if (data != null) {
-                imageUrls.add( data.getData().toString())
-                //hillfort.image = imageUrls
-                // remove the item at the same index as the viewpager location
-                imageUrls.removeAt(viewPager.currentItem)
-
-
-                // call the viewpager object
-                val adapter = ImageViewPagerHelper(this, imageUrls)
-                viewPager.setAdapter(adapter)
-
-                adapter.notifyDataSetChanged() //update the viewpager view with the new image
-            }
-        }
+//        IMAGE_DELETE_REQUEST -> { // when we want to delete a hilfort image
+//            if (data != null) {
+//                imageUrls.add( data.getData().toString())
+//                //hillfort.image = imageUrls
+//                // remove the item at the same index as the viewpager location
+//                imageUrls.removeAt(viewPager.currentItem)
+//
+//
+//                // call the viewpager object
+//                val adapter = ImageViewPagerHelper(this, imageUrls)
+//                viewPager.setAdapter(adapter)
+//
+//                adapter.notifyDataSetChanged() //update the viewpager view with the new image
+//            }
+//        }
 
 
       LOCATION_REQUEST -> {
