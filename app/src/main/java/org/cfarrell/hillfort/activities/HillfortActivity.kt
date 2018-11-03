@@ -110,13 +110,13 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
       }
 
     chooseImage.setOnClickListener {
-//      val viewPager= findViewById<ViewPager>(R.id.view_pager)
-//      val adapter = ImageViewPagerHelper(this, imageUrls)
+        if (imageUrls.size <= 4){
+            showImagePicker(this, IMAGE_REQUEST)
+        }
+        else{
+            toast("Max amount of images selected")
+        }
 
-        showImagePicker(this, IMAGE_REQUEST)
-//      viewPager.setAdapter(adapter)
-//
-//      adapter.notifyDataSetChanged() //update the viewpager view with the new image
     }
 
 
