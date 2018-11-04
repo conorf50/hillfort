@@ -32,7 +32,7 @@ class HillfortAdapter constructor(private var hillforts: List<HillfortModel>,
 
         fun bind(hillfort: HillfortModel, listener: HillfortListener) {
             // we want the visited date to be formatted like this
-            val dateString = SimpleDateFormat("yyyy-MM-dd").format(hillfort.visitedDate)
+            val dateString = SimpleDateFormat("dd-MMM-yyyy").format(hillfort.visitedDate)
 
 
             itemView.hillfortCardTitle.text = hillfort.title
