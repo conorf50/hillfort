@@ -17,4 +17,12 @@
   <string name="dialog_delete_hillfort">Delete Hillfort?</string>
   <string name="dialog_yes_delete_hillfort">YES</string>
   <string name="dialog_no_delete_hillfort">NO</string>
+
+  <string name="navigation_drawer_open">Open navigation drawer</string>
+  <string name="navigation_drawer_close">Close navigation drawer</string>
+  <string name="nav_header_title">Android Studio</string>
+  <string name="nav_header_subtitle">android.studio@android.com</string>
+  <string name="nav_header_desc">Navigation header</string>
+
+
 </resources>

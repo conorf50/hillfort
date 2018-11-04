@@ -5,31 +5,33 @@ import com.google.android.material.navigation.NavigationView
 import androidx.core.view.GravityCompat
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import android.view.*
 import kotlinx.android.synthetic.main.activity_hillfort_list.*
 import kotlinx.android.synthetic.main.app_bar_navbar.*
-import android.content.Intent
-import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.activity_hillfort_list.*
-import kotlinx.android.synthetic.main.card_hillfort.*
+
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.startActivityForResult
-import org.cfarrell.hillfort.R
+import org.cfarrell.hillfort.activities.HillfortListener
 import org.cfarrell.hillfort.main.MainApp
 import org.cfarrell.hillfort.models.HillfortModel
+import org.cfarrell.hillfort.activities.HillfortActivity
+
+import android.view.MenuItem
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.android.synthetic.main.activity_navbar.*
+import org.cfarrell.hillfort.activities.HillfortAdapter
 
 class HillfortListActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, HillfortListener {
-    //lateinit var app: MainApp
+    lateinit var app: MainApp
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hillfort_list)
-        //app = application as MainApp
+        app = application as MainApp
 
-        setSupportActionBar(toolbar)
-
+        //setSupportActionBar(toolbar)
+        val fab = findViewById<FloatingActionButton>(R.id.fab_add)
         fab.setOnClickListener { view ->
-            //startActivityForResult<HillfortActivity>(0)
+            startActivityForResult<HillfortActivity>(0)
 
         }
 
@@ -76,7 +78,7 @@ class HillfortListActivity : AppCompatActivity(), NavigationView.OnNavigationIte
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.nav_hillforts -> {
-                // Handle the camera action
+                //goto main
             }
             R.id.nav_stats -> {
                 // Handle the camera action

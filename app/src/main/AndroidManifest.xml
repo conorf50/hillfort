@@ -13,7 +13,7 @@
     android:supportsRtl="true"
     android:theme="@style/AppTheme">
     <activity android:name="org.cfarrell.hillfort.activities.HillfortActivity"></activity>
-    <activity android:name="org.cfarrell.hillfort.activities.HillfortListActivity">
+    <activity android:name="HillfortListActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
 
