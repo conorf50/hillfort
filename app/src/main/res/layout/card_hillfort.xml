@@ -7,56 +7,56 @@
         android:layout_marginBottom="8dp"
         android:elevation="24dp">
 
-  <RelativeLayout
-          android:layout_width="match_parent"
-          android:layout_height="140dp"
-          android:padding="16dp">
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:padding="16dp">
 
-    <ImageView
-            android:id="@+id/cardImageIcon"
-            android:layout_width="114dp"
-            android:layout_height="112dp"
-            android:layout_alignParentLeft="true"
-            android:layout_marginRight="6dp"
-    />
+        <ImageView
+                android:id="@+id/cardImageIcon"
+                android:layout_width="114dp"
+                android:layout_height="112dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginRight="6dp"
+        />
 
-    <TextView
-            android:id="@+id/hillfortCardTitle"
-            android:layout_width="267dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/cardImageIcon"
-            android:textSize="18sp" android:fontFamily="sans-serif-condensed" android:text="Title"
-            android:textStyle="bold" android:textAlignment="viewStart" android:layout_alignParentStart="true"
-            android:layout_marginStart="120dp" android:layout_alignParentEnd="true" android:layout_marginEnd="16dp"
-            android:layout_marginTop="3dp"/>
+        <TextView
+                android:id="@+id/hillfortCardTitle"
+                android:layout_width="267dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/cardImageIcon"
+                android:textSize="18sp" android:fontFamily="sans-serif-condensed" android:text="Title"
+                android:textStyle="bold" android:textAlignment="viewStart" android:layout_alignParentStart="true"
+                android:layout_marginStart="120dp" android:layout_alignParentEnd="true" android:layout_marginEnd="16dp"
+                android:layout_marginTop="3dp"/>
 
-    <TextView
-            android:id="@+id/hillfortCardDescription"
-            android:layout_width="240dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/hillfortCardTitle"
-            android:layout_toRightOf="@+id/cardImageIcon" android:text="Description"
-            android:fontFamily="sans-serif" android:maxLines="1"/>
-    <TextView
-            android:text="Visited on 22/12/2018"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:layout_marginEnd="6dp"
-            android:layout_alignParentBottom="true" android:id="@+id/visitedFlag" android:layout_marginBottom="0dp"
-            android:textColor="@color/colorAccent" android:visibility="invisible"/>
-    <TextView
-            android:text="Waterford"
-            android:layout_width="213dp"
-            android:layout_height="wrap_content" android:layout_alignParentStart="true"
-            android:layout_marginStart="150dp" android:id="@+id/cardHillfortLocation"
-            android:fontFamily="sans-serif-condensed"
-            android:layout_marginTop="72dp" android:layout_alignParentTop="true"/>
-    <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="19dp" app:srcCompat="@android:drawable/ic_menu_mylocation"
-            android:id="@+id/cardLocationIcon"
-            android:layout_above="@+id/visitedFlag" android:layout_toEndOf="@+id/cardImageIcon"
-            android:layout_marginBottom="1dp"/>
+        <TextView
+                android:id="@+id/hillfortCardDescription"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/hillfortCardTitle"
+                android:layout_toRightOf="@+id/cardImageIcon" android:text="Description"
+                android:fontFamily="sans-serif" android:maxLines="1"/>
+        <TextView
+                android:text="Visited on 22/12/2018"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:layout_marginEnd="6dp"
+                android:layout_alignParentBottom="true" android:id="@+id/visitedFlag" android:layout_marginBottom="0dp"
+                android:textColor="@color/colorAccent" android:visibility="invisible"/>
+        <TextView
+                android:text="Waterford"
+                android:layout_width="213dp"
+                android:layout_height="wrap_content" android:layout_alignParentStart="true"
+                android:layout_marginStart="150dp" android:id="@+id/cardHillfortLocation"
+                android:fontFamily="sans-serif-condensed"
+                android:layout_marginTop="72dp" android:layout_alignParentTop="true"/>
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="19dp" app:srcCompat="@android:drawable/ic_menu_mylocation"
+                android:id="@+id/cardLocationIcon"
+                android:layout_above="@+id/visitedFlag" android:layout_toEndOf="@+id/cardImageIcon"
+                android:layout_marginBottom="1dp"/>
 
-  </RelativeLayout>
+    </RelativeLayout>
 </androidx.cardview.widget.CardView>

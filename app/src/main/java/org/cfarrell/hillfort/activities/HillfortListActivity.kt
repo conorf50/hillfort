@@ -16,43 +16,43 @@ import org.cfarrell.hillfort.models.HillfortModel
 
 class HillfortListActivity : AppCompatActivity(), HillfortListener {
 
-  lateinit var app: MainApp
+    lateinit var app: MainApp
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_hillfort_list)
-    app = application as MainApp
-    toolbarMain.title = title
-    setSupportActionBar(toolbarMain)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_hillfort_list)
+        app = application as MainApp
+        toolbarMain.title = title
+        setSupportActionBar(toolbarMain)
 
 
-    // add a floating action button listener
-    val fab: View = findViewById(R.id.fab_add)
-    fab.setOnClickListener { view ->
-      startActivityForResult<HillfortActivity>(0)
+        // add a floating action button listener
+        val fab: View = findViewById(R.id.fab_add)
+        fab.setOnClickListener { view ->
+            startActivityForResult<HillfortActivity>(0)
 
+        }
+
+
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
+        recyclerView.layoutManager = layoutManager
+        recyclerView.adapter = HillfortAdapter(app.hillforts.findAll(), this)
+        loadHillforts ()
     }
 
+    private fun loadHillforts() {
+        showHillforts(app.hillforts.findAll())
+    }
 
-    val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
-    recyclerView.layoutManager = layoutManager
-    recyclerView.adapter = HillfortAdapter(app.hillforts.findAll(), this)
-    loadHillforts()
-  }
+    fun showHillforts(hillforts: List<HillfortModel>) {
+        recyclerView.adapter = HillfortAdapter(hillforts, this)
+        recyclerView.adapter?.notifyDataSetChanged()
+    }
 
-  private fun loadHillforts() {
-    showHillforts( app.hillforts.findAll())
-  }
-
-  fun showHillforts (hillforts: List<HillfortModel>) {
-    recyclerView.adapter = HillfortAdapter(hillforts, this)
-    recyclerView.adapter?.notifyDataSetChanged()
-  }
-
-  override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-    menuInflater.inflate(R.menu.menu_main, menu)
-    return super.onCreateOptionsMenu(menu)
-  }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
 
 //  override fun onOptionsItemSelected(item: MenuItem?): Boolean {
 //    when (item?.itemId) {
@@ -73,13 +73,13 @@ class HillfortListActivity : AppCompatActivity(), HillfortListener {
 //  }
 
 
-  override fun onHillfortClick(hillfort: HillfortModel) {
+    override fun onHillfortClick(hillfort: HillfortModel) {
 
-    startActivityForResult(intentFor<HillfortActivity>().putExtra("hillfort edit", hillfort), 0)
-  }
+        startActivityForResult(intentFor<HillfortActivity>().putExtra("hillfort edit", hillfort), 0)
+    }
 
-  override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-    loadHillforts()
-    super.onActivityResult(requestCode, resultCode, data)
-  }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        loadHillforts()
+        super.onActivityResult(requestCode, resultCode, data)
+    }
 }
