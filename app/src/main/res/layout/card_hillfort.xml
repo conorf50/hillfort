@@ -7,32 +7,40 @@
   android:elevation="24dp">
 
   <RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="16dp">
+          android:layout_width="match_parent"
+          android:layout_height="120dp"
+          android:padding="16dp">
 
     <ImageView
-      android:id="@+id/imageIcon"
-      android:layout_width="64dp"
-      android:layout_height="64dp"
-      android:layout_alignParentLeft="true"
-      android:layout_alignParentTop="true"
-      android:layout_marginRight="16dp"/>
+            android:id="@+id/imageIcon"
+            android:layout_width="95dp"
+            android:layout_height="80dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="16dp" android:layout_marginTop="0dp"/>
+
+      <TextView
+              android:id="@+id/hillfortTitle"
+              android:layout_width="267dp"
+              android:layout_height="wrap_content"
+              android:layout_alignParentTop="true"
+              android:layout_toRightOf="@+id/imageIcon"
+              android:textSize="18sp" android:fontFamily="sans-serif-condensed" android:text="Title"
+              android:textStyle="bold" android:textAlignment="viewStart"/>
 
     <TextView
-      android:id="@+id/hillfortTitle"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_alignParentTop="true"
-      android:layout_toRightOf="@+id/imageIcon"
-      android:textSize="30sp"/>
-
+            android:id="@+id/description"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/hillfortTitle"
+            android:layout_toRightOf="@+id/imageIcon" android:text="Description"
+            android:fontFamily="sans-serif-condensed"/>
     <TextView
-      android:id="@+id/description"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_below="@id/hillfortTitle"
-      android:layout_toRightOf="@+id/imageIcon"/>
+            android:text="Visited"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:layout_marginEnd="13dp"
+            android:layout_alignParentBottom="true" android:id="@+id/textView3" android:layout_marginBottom="11dp"
+            android:textColor="@color/colorAccent" android:visibility="invisible"/>
 
   </RelativeLayout>
 </androidx.cardview.widget.CardView>
