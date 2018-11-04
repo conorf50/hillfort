@@ -82,7 +82,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
             hillfort.title = hillfortTitle.text.toString()
             hillfort.description = hillfortDescription.text.toString()
             hillfort.visitedDate = Date() // set the date to right now
-
+            hillfort.visitedFlag = checkBoxHillfortVisited.isChecked // depending on whether the box is checked
             // add the images from the imageUrl array to hillfort.image
             // todo fix the activity close on incorrect title
             if (hillfort.title.isEmpty()) {
@@ -106,12 +106,6 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
         }
 
 
-        checkBoxHillfortVisited.setOnClickListener { view ->
-            if (checkBoxHillfortVisited.isChecked) {
-                hillfort.visitedFlag = true
-            } else
-                hillfort.visitedFlag == false
-        }
 
 
         // listener for the deleteImage button
