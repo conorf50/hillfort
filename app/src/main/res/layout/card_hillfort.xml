@@ -43,14 +43,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:layout_marginEnd="6dp"
             android:layout_alignParentBottom="true" android:id="@+id/visitedFlag" android:layout_marginBottom="0dp"
-            android:textColor="@color/colorAccent" android:visibility="visible"/>
+            android:textColor="@color/colorAccent" android:visibility="invisible"/>
     <TextView
             android:text="Waterford"
             android:layout_width="213dp"
             android:layout_height="wrap_content" android:layout_alignParentStart="true"
-            android:layout_marginStart="120dp" android:id="@+id/textHillfortLocation"
+            android:layout_marginStart="150dp" android:id="@+id/textHillfortLocation"
             android:fontFamily="sans-serif-condensed"
             android:layout_marginTop="72dp" android:layout_alignParentTop="true"/>
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="19dp" app:srcCompat="@android:drawable/ic_menu_mylocation"
+            android:id="@+id/imageView2"
+            android:layout_above="@+id/visitedFlag" android:layout_toEndOf="@+id/imageIcon"
+            android:layout_marginBottom="1dp"/>
 
   </RelativeLayout>
 </androidx.cardview.widget.CardView>

@@ -32,7 +32,11 @@ class HillfortAdapter constructor(private var hillforts: List<HillfortModel>,
     fun bind(hillfort: HillfortModel, listener: HillfortListener) {
       itemView.hillfortTitle.text = hillfort.title
       itemView.description.text = hillfort.description
-      itemView.visitedFlag.text = hillfort.visitedFlag.toString()
+      val date = "4/11/2018" // replace with visited date
+      if (hillfort.visitedFlag == true){
+        itemView.visitedFlag.setVisibility(View.VISIBLE) // only display the text if a hillfort has been visited
+        itemView.visitedFlag.text = "Visited on " + date
+      }
       // todo change this to read the first item in the hillfort image URI array
       itemView.imageIcon.setImageBitmap(readImageFromPath(itemView.context, hillfort.image))
       //itemView.imageIcon.setImageBitmap()
