@@ -7,6 +7,7 @@ import androidx.appcompat.app.AlertDialog
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.CheckBox
 import kotlinx.android.synthetic.main.activity_hllfort.*
 import kotlinx.android.synthetic.main.notification_media_cancel_action.*
 import org.jetbrains.anko.AnkoLogger
@@ -20,6 +21,7 @@ import org.cfarrell.hillfort.models.HillfortModel
 import org.cfarrell.hillfort.models.Location
 import androidx.viewpager.widget.ViewPager
 import org.cfarrell.hillfort.helpers.ImageViewPagerHelper
+import java.util.*
 
 
 class HillfortActivity : AppCompatActivity(), AnkoLogger {
@@ -51,11 +53,12 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
 
     if (intent.hasExtra("hillfort edit")) {
       val viewPager= findViewById<ViewPager>(R.id.view_pager)
-
+        val checkbox = findViewById<CheckBox>(R.id.checkBoxHillfortVisited)
       edit = true
       hillfort = intent.extras.getParcelable<HillfortModel>("hillfort edit")
       hillfortTitle.setText(hillfort.title)
       hillfortDescription.setText(hillfort.description)
+        checkbox.setChecked(hillfort.visitedFlag)
         //toast("HF Image" + hillfort.image)
       // add the hillfort image to the viewpager
       //imageUrls = hillfort.image)
@@ -78,6 +81,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
 //      adapter.notifyDataSetChanged() //update the viewpager view with the new image
       hillfort.title = hillfortTitle.text.toString()
       hillfort.description = hillfortDescription.text.toString()
+      hillfort.visitedDate = Date() // set the date to right now
 
       // add the images from the imageUrl array to hillfort.image
       // todo fix the activity close on incorrect title
@@ -107,9 +111,13 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
 checkBoxHillfortVisited.setOnClickListener{
     view ->
     if(checkBoxHillfortVisited.isChecked){
-        toast("Marking as visited")
+        hillfort.visitedFlag = true
     }
+    else
+        hillfort.visitedFlag == false
 }
+
+
       // listener for the deleteImage button
 
       buttonDeleteImage.setOnClickListener {

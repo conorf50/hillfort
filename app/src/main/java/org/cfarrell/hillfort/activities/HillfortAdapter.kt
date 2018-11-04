@@ -3,13 +3,12 @@ package org.cfarrell.hillfort.activities
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.activity_hllfort.view.*
 import kotlinx.android.synthetic.main.card_hillfort.view.*
 import org.cfarrell.hillfort.R
 import org.cfarrell.hillfort.helpers.readImageFromPath
 import org.cfarrell.hillfort.models.HillfortModel
-import java.lang.Exception
 import java.text.DecimalFormat
+import java.text.SimpleDateFormat
 
 interface HillfortListener {
   fun onHillfortClick(hillfortModel: HillfortModel)
@@ -32,14 +31,17 @@ class HillfortAdapter constructor(private var hillforts: List<HillfortModel>,
   class MainHolder constructor(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
 
     fun bind(hillfort: HillfortModel, listener: HillfortListener) {
+      // we want the visited date to be formatted like this
+      val dateString = SimpleDateFormat("yyyy-MM-dd").format(hillfort.visitedDate)
+
+
       itemView.hillfortCardTitle.text = hillfort.title
       itemView.hillfortCardDescription.text = hillfort.description
       itemView.cardImageIcon.setImageBitmap(readImageFromPath(itemView.context, hillfort.image))
 
-      val date = "4/11/2018" // replace with visited date
       if (hillfort.visitedFlag == true){
         itemView.visitedFlag.setVisibility(View.VISIBLE) // only display the text if a hillfort has been visited
-        itemView.visitedFlag.text = "Visited on " + date
+        itemView.visitedFlag.text = "Visited on " + dateString
       }
 
       if (!(hillfort.lat == 0.0 || hillfort.lng == 0.0)){
