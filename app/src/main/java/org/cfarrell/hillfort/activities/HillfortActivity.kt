@@ -104,7 +104,12 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
     }
 
 
-
+checkBoxHillfortVisited.setOnClickListener{
+    view ->
+    if(checkBoxHillfortVisited.isChecked){
+        toast("Marking as visited")
+    }
+}
       // listener for the deleteImage button
 
       buttonDeleteImage.setOnClickListener {
