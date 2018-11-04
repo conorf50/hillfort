@@ -19,7 +19,6 @@ import org.cfarrell.hillfort.main.MainApp
 import org.cfarrell.hillfort.models.HillfortModel
 import org.cfarrell.hillfort.models.Location
 import androidx.viewpager.widget.ViewPager
-import kotlinx.android.synthetic.main.abc_activity_chooser_view.*
 import org.cfarrell.hillfort.helpers.ImageViewPagerHelper
 
 
@@ -56,7 +55,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
       edit = true
       hillfort = intent.extras.getParcelable<HillfortModel>("hillfort edit")
       hillfortTitle.setText(hillfort.title)
-      description.setText(hillfort.description)
+      hillfortDescription.setText(hillfort.description)
         //toast("HF Image" + hillfort.image)
       // add the hillfort image to the viewpager
       //imageUrls = hillfort.image)
@@ -78,7 +77,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
 
 //      adapter.notifyDataSetChanged() //update the viewpager view with the new image
       hillfort.title = hillfortTitle.text.toString()
-      hillfort.description = description.text.toString()
+      hillfort.description = hillfortDescription.text.toString()
 
       // add the images from the imageUrl array to hillfort.image
       // todo fix the activity close on incorrect title
@@ -140,6 +139,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
       }
       startActivityForResult(intentFor<MapsActivity>().putExtra("location", location), LOCATION_REQUEST)
     }
+
   }
 
   override fun onCreateOptionsMenu(menu: Menu?): Boolean {
