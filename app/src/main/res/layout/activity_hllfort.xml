@@ -8,7 +8,7 @@
 
   <RelativeLayout
           android:layout_width="match_parent"
-          android:layout_height="wrap_content" tools:layout_editor_absoluteY="0dp" tools:layout_editor_absoluteX="0dp">
+          android:layout_height="wrap_content" tools:layout_editor_absoluteY="0dp" tools:layout_editor_absoluteX="65dp">
 
     <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"
@@ -53,12 +53,12 @@
         <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/hillfortDescription"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="80dp"
                 android:layout_margin="8dp"
                 android:hint="@string/hint_hillfortDescription"
                 android:inputType="text"
-                android:maxLength="25"
-                android:maxLines="1"
+                android:maxLength="150"
+                android:maxLines="3"
                 android:padding="8dp"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="14sp"/>
@@ -91,6 +91,11 @@
                 android:text="@string/button_deleteImage"
                 android:textColor="@color/colorPrimary"
                 android:textSize="16sp" android:visibility="gone"/>
+        <CheckBox
+                android:text="CheckBox"
+                android:layout_width="114dp"
+                android:layout_height="wrap_content" android:id="@+id/checkBoxHillfortVisited"
+                android:layout_marginLeft="40dp"/>
         <androidx.viewpager.widget.ViewPager
                 android:layout_width="368dp"
                 android:layout_height="227dp" android:layout_marginBottom="16dp"
