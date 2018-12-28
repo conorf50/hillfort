@@ -2,19 +2,30 @@ package org.cfarrell.hillfort.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity;
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import org.cfarrell.hillfort.R
 
 import kotlinx.android.synthetic.main.content_hillfort_maps.*
+import org.cfarrell.hillfort.main.MainApp
 
 class HillfortMapsActivity : AppCompatActivity() {
 
     lateinit var map: GoogleMap
+    lateinit var app: MainApp
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hillfort_maps)
         mapView.onCreate(savedInstanceState);
+        mapView.getMapAsync {
+            map = it
+            configureMap()
+        }
+        app = application as MainApp
     }
     override fun onDestroy() {
         super.onDestroy()
@@ -40,4 +51,16 @@ class HillfortMapsActivity : AppCompatActivity() {
         super.onSaveInstanceState(outState)
         mapView.onSaveInstanceState(outState)
     }
+
+    fun configureMap() {
+        map.uiSettings.setZoomControlsEnabled(true)
+        app.hillforts.findAll().forEach {
+            val loc = LatLng(it.lat, it.lng)
+            val options = MarkerOptions().title(it.title).position(loc)
+            map.addMarker(options).tag = it.id
+            map.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, it.zoom))
+        }
+    }
+
+
 }
