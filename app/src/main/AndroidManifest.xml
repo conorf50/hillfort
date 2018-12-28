@@ -29,6 +29,7 @@
       android:name="org.cfarrell.hillfort.activities.MapsActivity"
       android:label="@string/title_activity_maps"></activity>
 
+    <!--fixes connection on newer android versions-->
     <uses-library
       android:name="org.apache.http.legacy"
       android:required="false" />
