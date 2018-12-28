@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.*
 import kotlinx.android.synthetic.main.activity_hillfort_list.*
 import kotlinx.android.synthetic.main.card_hillfort.*
+import org.cfarrell.hillfort.HillfortMapsActivity
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.startActivityForResult
 import org.cfarrell.hillfort.R
@@ -54,6 +55,24 @@ class HillfortListActivity : AppCompatActivity(), HillfortListener {
         // create the main landing page for the app
         menuInflater.inflate(R.menu.menu_main, menu)
         return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        when (item.itemId) {
+            R.id.mapView -> {
+                startActivityForResult<HillfortMapsActivity>(0)
+            }
+//            R.id.settings -> {
+//                startActivityForResult<HillfortSettingsActivity>(0)
+//            }
+//            R.id.favourites -> {
+//                startActivityForResult<FavouriteHillfortsActivity>(0)
+//            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onHillfortClick(hillfort: HillfortModel) {
