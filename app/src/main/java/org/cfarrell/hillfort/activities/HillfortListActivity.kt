@@ -23,8 +23,8 @@ class HillfortListActivity : AppCompatActivity(), HillfortListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hillfort_list)
         app = application as MainApp
-        toolbarMain.title = title
-        setSupportActionBar(toolbarMain)
+        //toolbarMain.title = title
+        //setSupportActionBar(toolbarMain)
 
 
         // add a floating action button listener
