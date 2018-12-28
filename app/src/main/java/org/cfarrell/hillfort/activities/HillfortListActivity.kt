@@ -12,6 +12,7 @@ import org.jetbrains.anko.startActivityForResult
 import org.cfarrell.hillfort.R
 import org.cfarrell.hillfort.main.MainApp
 import org.cfarrell.hillfort.models.HillfortModel
+import org.jetbrains.anko.toast
 
 
 class HillfortListActivity : AppCompatActivity(), HillfortListener {
@@ -22,8 +23,8 @@ class HillfortListActivity : AppCompatActivity(), HillfortListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hillfort_list)
         app = application as MainApp
-        toolbarMain.title = title
-        setSupportActionBar(toolbarMain)
+        //toolbarMain.title = title
+        //setSupportActionBar(toolbarMain)
 
 
         // add a floating action button listener
@@ -50,28 +51,10 @@ class HillfortListActivity : AppCompatActivity(), HillfortListener {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        // create the main landing page for the app
         menuInflater.inflate(R.menu.menu_main, menu)
         return super.onCreateOptionsMenu(menu)
     }
-
-//  override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-//    when (item?.itemId) {
-//      // when the user clicks the add button, start the add hillfort activity
-//      R.id.item_add -> startActivityForResult<HillfortActivity>(0)
-//      //R.id.fab_add -> startActivityForResult<HillfortActivity>(0)
-//    }
-//    return super.onOptionsItemSelected(item)
-//  }
-
-//  override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-//
-//    val fab: View = findViewById(R.id.fab_add)
-//    fab.setOnClickListener { view ->
-//      startActivityForResult<HillfortActivity>(0)
-//    }
-//    return super.onOptionsItemSelected(item)
-//  }
-
 
     override fun onHillfortClick(hillfort: HillfortModel) {
 

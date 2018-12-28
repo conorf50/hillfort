@@ -38,8 +38,8 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
         imageUrls.clear() // clear the image urls array
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hllfort)
-        toolbarAdd.title = title
-        setSupportActionBar(toolbarAdd)
+        //toolbarAdd.title = title
+       // setSupportActionBar(toolbarAdd)
         val buttonDeleteImage: View = findViewById(R.id.deleteImage)
         // hide the delete button for now as it causes bugs
         buttonDeleteImage.setVisibility(View.GONE)
