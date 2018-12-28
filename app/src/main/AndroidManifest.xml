@@ -35,7 +35,7 @@
                 android:required="false"/>
 
         <activity
-                android:name=".HillfortMapsActivity"
+                android:name=".activities.HillfortMapsActivity"
                 android:label="@string/title_activity_hillfort_maps"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>

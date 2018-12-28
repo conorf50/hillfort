@@ -7,6 +7,20 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:showIn="@layout/activity_hillfort_maps"
-        tools:context="org.cfarrell.hillfort.HillfortMapsActivity">
+        tools:context="org.cfarrell.hillfort.activities.HillfortMapsActivity">
 
+    <androidx.cardview.widget.CardView
+            android:layout_width="368dp"
+            android:layout_height="96dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            android:id="@+id/cardView"/>
+    <com.google.android.gms.maps.MapView
+            android:layout_width="359dp"
+            android:layout_height="380dp"
+            android:id="@+id/mapView" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/cardView"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

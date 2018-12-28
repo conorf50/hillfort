@@ -3,17 +3,13 @@ package org.cfarrell.hillfort.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.*
 import kotlinx.android.synthetic.main.activity_hillfort_list.*
-import kotlinx.android.synthetic.main.card_hillfort.*
-import org.cfarrell.hillfort.HillfortMapsActivity
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.startActivityForResult
 import org.cfarrell.hillfort.R
 import org.cfarrell.hillfort.main.MainApp
 import org.cfarrell.hillfort.models.HillfortModel
-import org.jetbrains.anko.toast
 
 
 class HillfortListActivity : AppCompatActivity(), HillfortListener {
