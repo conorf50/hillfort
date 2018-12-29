@@ -71,4 +71,12 @@ serialize()
     val jsonString = read(context, JSON_FILE)
     hillforts = Gson().fromJson(jsonString, listType)
   }
+
+  override fun findById(id:Long) : HillfortModel? {
+    val foundPlacemark: HillfortModel? = hillforts.find { it.id == id }
+    return foundPlacemark
+  }
+
+
+
 }

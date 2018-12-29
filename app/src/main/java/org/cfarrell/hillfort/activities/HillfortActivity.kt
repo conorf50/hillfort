@@ -161,7 +161,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
                 // source: https://code.tutsplus.com/tutorials/showing-material-design-dialogs-in-an-android-app--cms-30013
                 AlertDialog.Builder(this)
                         .setTitle("Delete Hillfort?")
-                        .setMessage("Are you aure that you want to delete this hillfort entry?.")
+                        .setMessage("Are you sure that you want to delete this hillfort entry?.")
                         .setPositiveButton("Yes") { dialog, which ->
                             app.hillforts.delete(hillfort)
                             finish()
