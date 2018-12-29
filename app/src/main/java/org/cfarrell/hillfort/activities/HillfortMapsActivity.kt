@@ -1,7 +1,6 @@
 package org.cfarrell.hillfort.activities
 
 import android.os.Bundle
-import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -11,12 +10,13 @@ import com.google.android.gms.maps.model.MarkerOptions
 import org.cfarrell.hillfort.R
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
+import org.jetbrains.anko.intentFor
+import org.jetbrains.anko.toast
 import kotlinx.android.synthetic.main.content_hillfort_maps.*
-import kotlinx.android.synthetic.main.notification_template_custom_big.*
 import org.cfarrell.hillfort.helpers.readImageFromPath
 import org.cfarrell.hillfort.main.MainApp
 
-class HillfortMapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener {
+class HillfortMapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener, AnkoLogger {
 
     lateinit var map: GoogleMap
     lateinit var app: MainApp
@@ -39,6 +39,7 @@ class HillfortMapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListene
         val hillfort = app.hillforts.findById(tag)
         currentTitle.text = hillfort!!.title
         currentDescription.text = hillfort!!.description
+        info { "HILLFORT   "+hillfort }
         imageView.setImageBitmap(readImageFromPath(this@HillfortMapsActivity, hillfort.image))
         return true
     }
@@ -77,6 +78,7 @@ class HillfortMapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListene
             map.addMarker(options).tag = it.id
             map.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, it.zoom))
         }
+
     }
 
 

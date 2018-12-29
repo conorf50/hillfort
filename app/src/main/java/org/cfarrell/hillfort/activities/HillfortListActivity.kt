@@ -3,6 +3,7 @@ package org.cfarrell.hillfort.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import kotlinx.android.synthetic.main.activity_hillfort_list.*
 import org.jetbrains.anko.intentFor
@@ -10,9 +11,11 @@ import org.jetbrains.anko.startActivityForResult
 import org.cfarrell.hillfort.R
 import org.cfarrell.hillfort.main.MainApp
 import org.cfarrell.hillfort.models.HillfortModel
+import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.info
 
 
-class HillfortListActivity : AppCompatActivity(), HillfortListener {
+class HillfortListActivity : AppCompatActivity(), HillfortListener, AnkoLogger {
 
     lateinit var app: MainApp
 
@@ -27,6 +30,7 @@ class HillfortListActivity : AppCompatActivity(), HillfortListener {
         // add a floating action button listener
         val fab: View = findViewById(R.id.fab_add)
         fab.setOnClickListener { view ->
+
             startActivityForResult<HillfortActivity>(0)
 
         }
@@ -60,6 +64,7 @@ class HillfortListActivity : AppCompatActivity(), HillfortListener {
         when (item.itemId) {
             R.id.mapView -> {
                 startActivityForResult<HillfortMapsActivity>(0)
+
             }
 //            R.id.settings -> {
 //                startActivityForResult<HillfortSettingsActivity>(0)
