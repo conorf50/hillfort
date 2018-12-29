@@ -56,6 +56,28 @@ class HillfortListActivity : AppCompatActivity(), HillfortListener {
         return super.onCreateOptionsMenu(menu)
     }
 
+
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        when (item.itemId) {
+            R.id.mapView -> {
+                startActivityForResult<HillfortMapsActivity>(0)
+            }
+//            R.id.settings -> {
+//                startActivityForResult<HillfortSettingsActivity>(0)
+//            }
+//            R.id.favourites -> {
+//                startActivityForResult<FavouriteHillfortsActivity>(0)
+//            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+
+
     override fun onHillfortClick(hillfort: HillfortModel) {
 
         startActivityForResult(intentFor<HillfortActivity>().putExtra("hillfort edit", hillfort), 0)
