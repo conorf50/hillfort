@@ -72,6 +72,7 @@ class HillfortMapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListene
 
     fun configureMap() {
         map.uiSettings.setZoomControlsEnabled(true)
+        map.setOnMarkerClickListener(this)
         app.hillforts.findAll().forEach {
             val loc = LatLng(it.lat, it.lng)
             val options = MarkerOptions().title(it.title).position(loc)
