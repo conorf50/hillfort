@@ -26,6 +26,7 @@ class HillfortMapsActivity : AppCompatActivity() {
             configureMap()
         }
         app = application as MainApp
+
     }
     override fun onDestroy() {
         super.onDestroy()

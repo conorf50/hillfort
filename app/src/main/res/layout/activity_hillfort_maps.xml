@@ -12,7 +12,7 @@ tools:context=".activities.HillfortListActivity" android:id="@+id/coordinatorLay
             android:layout_height="64dp"
             android:layout_width="800dp"
             android:theme="@style/AppTheme.AppBarOverlay"
-            android:id="@+id/appBarLayout">
+            android:id="@+id/appBarMapView">
 
     </com.google.android.material.appbar.AppBarLayout>
 
