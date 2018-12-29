@@ -1,6 +1,7 @@
 package org.cfarrell.hillfort.activities
 
 import android.os.Bundle
+import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -28,6 +29,8 @@ class HillfortMapsActivity : AppCompatActivity() {
         app = application as MainApp
 
     }
+
+
     override fun onDestroy() {
         super.onDestroy()
         mapView.onDestroy()

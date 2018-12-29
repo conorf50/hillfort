@@ -8,13 +8,13 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 tools:context=".activities.HillfortListActivity" android:id="@+id/coordinatorLayout">
 
-    <com.google.android.material.appbar.AppBarLayout
-            android:layout_height="64dp"
-            android:layout_width="800dp"
-            android:theme="@style/AppTheme.AppBarOverlay"
-            android:id="@+id/appBarMapView">
+    <!--<com.google.android.material.appbar.AppBarLayout-->
+            <!--android:layout_height="64dp"-->
+            <!--android:layout_width="800dp"-->
+            <!--android:theme="@style/AppTheme.AppBarOverlay"-->
+            <!--android:id="@+id/appBarMapView">-->
 
-    </com.google.android.material.appbar.AppBarLayout>
+    <!--</com.google.android.material.appbar.AppBarLayout>-->
 
     <include layout="@layout/content_hillfort_maps" />
 
