@@ -32,12 +32,13 @@ class HillfortAdapter constructor(private var hillforts: List<HillfortModel>,
 
         fun bind(hillfort: HillfortModel, listener: HillfortListener) {
             // we want the visited date to be formatted like this
-            val dateString = SimpleDateFormat("yyyy-MM-dd").format(hillfort.visitedDate)
+            // Thu, Jan 3 2019
+            val dateString = SimpleDateFormat("E, MMM dd YYYY").format(hillfort!!.visitedDate)
 
 
-            itemView.hillfortCardTitle.text = hillfort.title
-            itemView.hillfortCardDescription.text = hillfort.description
-            itemView.cardImageIcon.setImageBitmap(readImageFromPath(itemView.context, hillfort.image))
+            itemView.hillfortCardTitle.text = hillfort!!.title
+            itemView.hillfortCardDescription.text = hillfort!!.description
+            itemView.cardImageIcon.setImageBitmap(readImageFromPath(itemView.context, hillfort!!.image))
 
             if (hillfort.visitedFlag == true) {
                 itemView.visitedFlag.setVisibility(View.VISIBLE) // only display the text if a hillfort has been visited
