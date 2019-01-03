@@ -13,7 +13,7 @@
             style="@style/Widget.AppCompat.Button" android:text="@string/button_addImage"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-            app:layout_constraintHorizontal_bias="0.0" android:layout_marginTop="264dp"
+            app:layout_constraintHorizontal_bias="0.0" android:layout_marginTop="196dp"
             app:layout_constraintTop_toTopOf="parent"/>
     <Button
             android:layout_width="156dp"
@@ -22,7 +22,7 @@
                     "@+id/deleteImage" style="@style/Widget.AppCompat.Button" android:text="@string/button_deleteImage"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-            app:layout_constraintHorizontal_bias="1.0" android:layout_marginTop="264dp"
+            app:layout_constraintHorizontal_bias="0.0" android:layout_marginTop="252dp"
             app:layout_constraintTop_toTopOf="parent"/>
 
 
@@ -32,15 +32,14 @@
             android:layout_height="wrap_content" android:id="@+id/checkBoxHillfortVisited"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-            app:layout_constraintHorizontal_bias="0.0" android:layout_marginTop="212dp"
+            app:layout_constraintHorizontal_bias="0.312" android:layout_marginTop="152dp"
             app:layout_constraintTop_toTopOf="parent"/>
-
 
 
     <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/hillfortTitle"
-            android:layout_width="383dp"
-            android:layout_height="wrap_content"
+            android:layout_width="292dp"
+            android:layout_height="38dp"
             android:layout_margin="8dp"
             android:hint="@string/hint_hillfortTitle"
             android:inputType="text"
@@ -52,10 +51,10 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-    />
+            app:layout_constraintHorizontal_bias="0.035"/>
     <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/hillfortDescription"
-            android:layout_width="381dp"
+            android:layout_width="294dp"
             android:layout_height="80dp"
             android:layout_margin="8dp"
             android:hint="@string/hint_hillfortDescription"
@@ -66,19 +65,19 @@
             android:textColor="@color/colorPrimaryDark"
             android:textSize="14sp" android:layout_marginStart="8dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/hillfortTitle"/>
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/hillfortTitle" app:layout_constraintHorizontal_bias="0.034"/>
 
 
     <androidx.viewpager.widget.ViewPager
-            android:layout_width="429dp"
-            android:layout_height="220dp" android:layout_marginBottom="16dp"
+            android:layout_width="337dp"
+            android:layout_height="314dp" android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp"
             android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"
             android:id="@+id/view_pager"
-            app:layout_constraintVertical_bias="0.897"/>
+            app:layout_constraintVertical_bias="0.084" app:layout_constraintHorizontal_bias="0.975"/>
     <Button
             android:text="@string/button_location"
             android:layout_width="156dp"
@@ -92,8 +91,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/btnAdd" app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp" android:layout_marginBottom="4dp"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.498"/>
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp" android:layout_marginBottom="36dp"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.344"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

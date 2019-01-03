@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "904388735170",
+    "firebase_url": "https://placemark-c3a89.firebaseio.com",
+    "project_id": "placemark-c3a89",
+    "storage_bucket": "placemark-c3a89.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:904388735170:android:634c4d908a4ce143",
+        "android_client_info": {
+          "package_name": "org.wit.placemark"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "904388735170-fl0iqnsoommf05gurg9s4anf8d1pa2no.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2CT4-aql4aH2dNelOt7rJG4jjvs0GJZs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
