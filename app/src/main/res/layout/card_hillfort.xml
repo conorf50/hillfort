@@ -18,7 +18,7 @@
                 android:layout_height="112dp"
                 android:layout_alignParentLeft="true"
                 android:layout_marginRight="6dp"
-        />
+                app:srcCompat="@drawable/ic_broken_image_black_24dp"/>
 
         <TextView
                 android:id="@+id/hillfortCardTitle"

@@ -93,6 +93,7 @@ class HillfortListActivity : AppCompatActivity(), HillfortListener, AnkoLogger {
                     toast("Images will not load without granting permission")
                 } else {
                     //toast("Permission")
+
                 }
             }
         }

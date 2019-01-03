@@ -39,7 +39,7 @@ class HillfortMapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListene
         val hillfort = app.hillforts.findById(tag)
         currentTitle.text = hillfort!!.title
         currentDescription.text = hillfort!!.description
-        info { "HILLFORT   "+hillfort }
+        //toast( "HILLFORT   "+hillfort )
         imageView.setImageBitmap(readImageFromPath(this@HillfortMapsActivity, hillfort.image))
         return true
     }
@@ -72,11 +72,13 @@ class HillfortMapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListene
 
     fun configureMap() {
         map.uiSettings.setZoomControlsEnabled(true)
+        map.setOnMarkerClickListener(this)
         app.hillforts.findAll().forEach {
             val loc = LatLng(it.lat, it.lng)
             val options = MarkerOptions().title(it.title).position(loc)
             map.addMarker(options).tag = it.id
             map.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, it.zoom))
+            //toast(it.description)
         }
 
     }
