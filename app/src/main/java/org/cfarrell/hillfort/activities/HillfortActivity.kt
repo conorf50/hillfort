@@ -23,7 +23,9 @@ import org.cfarrell.hillfort.main.MainApp
 import org.cfarrell.hillfort.models.HillfortModel
 import org.cfarrell.hillfort.models.Location
 import androidx.viewpager.widget.ViewPager
+import com.google.android.material.snackbar.Snackbar
 import org.cfarrell.hillfort.helpers.ImageViewPagerHelper
+import java.time.Duration
 import java.util.*
 
 
@@ -90,15 +92,16 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
             hillfort.visitedDate = Date() // set the date to right now
             hillfort.visitedFlag = checkBoxHillfortVisited.isChecked // depending on whether the box is checked
             // add the images from the imageUrl array to hillfort.image
-            // todo fix the activity close on incorrect title
             if (hillfort.title.isEmpty()) {
                 toast(R.string.enter_hillfort_title)
             } else {
                 if (edit) {
+
                     app.hillforts.update(hillfort.copy())
                     finish()
 
                 } else {
+                    // todo hide delete button on hf add
                     app.hillforts.create(hillfort.copy())
                     finish()
 
@@ -108,6 +111,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
             setResult(AppCompatActivity.RESULT_OK)
             // todo display snackbar confiming placemark add
             // todo add this snackbar to the hillfortList view instead of this one
+            Snackbar.make(view,"Hillfort added", Snackbar.LENGTH_SHORT)
 
         }
 
