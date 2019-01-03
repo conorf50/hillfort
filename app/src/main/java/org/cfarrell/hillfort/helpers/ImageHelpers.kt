@@ -6,9 +6,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
-import android.provider.MediaStore
 import org.cfarrell.hillfort.R
-import java.io.IOException
 
 fun showImagePicker(parent: Activity, id: Int) {
     val intent = Intent()
@@ -26,7 +24,8 @@ fun readImageFromPath(context: Context, path: ArrayList<String>): Bitmap? {
     //val uri = Uri.parse(path.first())
 
     try {
-        val uri = Uri.parse(path.first()) // parse the first element if it exists
+        //ActivityCompat.requestPermissions(this, Manifest.permission.READ_EXTERNAL_STORAGE.arr)
+                val uri = Uri.parse(path.first()) // parse the first element if it exists
         if (uri != null) {
             try {
                 val parcelFileDescriptor = context.getContentResolver().openFileDescriptor(uri, "r")

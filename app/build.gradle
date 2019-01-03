@@ -5,25 +5,25 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 androidExtensions {
-  experimental = true
+    experimental = true
 }
 
 android {
-  compileSdkVersion 28
-  defaultConfig {
-    applicationId "org.cfarrell.hillfortexplorer"
-    minSdkVersion 23
-    targetSdkVersion 28
-    versionCode 1
-    versionName "1.0"
-    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-  }
-  buildTypes {
-    release {
-      minifyEnabled false
-      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "org.cfarrell.hillfortexplorer"
+        minSdkVersion 22
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-  }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
 }
 
 dependencies {
