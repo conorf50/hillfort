@@ -9,7 +9,7 @@ fun write(context: Context, fileName: String, data: String) {
         val outputStreamWriter = OutputStreamWriter(context.openFileOutput(fileName, Context.MODE_PRIVATE))
         outputStreamWriter.write(data)
         outputStreamWriter.close()
-    } catch (e: Exception) {
+    } catch (e: Throwable) {
         Log.e("Error: ", "Cannot read file: " + e.toString());
     }
 }
