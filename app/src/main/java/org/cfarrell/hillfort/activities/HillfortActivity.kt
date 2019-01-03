@@ -7,10 +7,13 @@ import androidx.appcompat.app.AlertDialog
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.Manifest
 import android.widget.CheckBox
+import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_hllfort.*
 import kotlinx.android.synthetic.main.notification_media_cancel_action.*
 import org.jetbrains.anko.AnkoLogger
+import android.content.pm.PackageManager
 import org.jetbrains.anko.info
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.toast
@@ -44,6 +47,9 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
         // hide the delete button for now as it causes bugs
         buttonDeleteImage.setVisibility(View.GONE)
 
+        // see this at bottom of file.
+        // Source: https://www.techotopia.com/index.php/Kotlin_-_Making_Runtime_Permission_Requests_in_Android
+        //setupPermissions()
 
         info("Hillfort Activity started..")
 
@@ -142,6 +148,14 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
         }
 
     }
+
+
+
+
+
+
+
+
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_hillfort, menu)
