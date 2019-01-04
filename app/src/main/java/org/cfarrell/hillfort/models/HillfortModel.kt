@@ -19,7 +19,7 @@ data class HillfortModel(
         var visitedFlag: Boolean = false,
         var favouriteFlag: Boolean = false,
         var visitedDate: Date = Date(),
-        var rating: Byte = 0) : Parcelable
+        var rating: Int = 0) : Parcelable
 
 @Parcelize
 data class Location(var lat: Double = 0.0,

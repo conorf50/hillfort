@@ -14,10 +14,11 @@ import kotlinx.android.synthetic.main.activity_hllfort.*
 import kotlinx.android.synthetic.main.notification_media_cancel_action.*
 import org.jetbrains.anko.AnkoLogger
 import android.content.pm.PackageManager
+import android.widget.RatingBar
+import org.cfarrell.hillfort.R
 import org.jetbrains.anko.info
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.toast
-import org.cfarrell.hillfort.R
 import org.cfarrell.hillfort.helpers.showImagePicker
 import org.cfarrell.hillfort.main.MainApp
 import org.cfarrell.hillfort.models.HillfortModel
@@ -47,7 +48,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
        // setSupportActionBar(toolbarAdd)
         val buttonDeleteImage: View = findViewById(R.id.deleteImage)
         // hide the delete button for now as it causes bugs
-        buttonDeleteImage.setVisibility(View.GONE)
+       buttonDeleteImage.setVisibility(View.GONE)
 
         // see this at bottom of file.
         // Source: https://www.techotopia.com/index.php/Kotlin_-_Making_Runtime_Permission_Requests_in_Android
@@ -61,12 +62,19 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
 
         if (intent.hasExtra("hillfort edit")) {
             val viewPager = findViewById<ViewPager>(R.id.view_pager)
-            val checkbox = findViewById<CheckBox>(R.id.checkBoxHillfortVisited)
+            val checkboxVisit = findViewById<CheckBox>(R.id.checkBoxHillfortVisited)
+            val checkboxFav = findViewById<CheckBox>(R.id.checkBoxHillfortFav)
+            val hillfortRatingBar = findViewById<RatingBar>(R.id.hillfortRating)
+
             edit = true
             hillfort = intent.extras.getParcelable<HillfortModel>("hillfort edit")
             hillfortTitle.setText(hillfort.title)
             hillfortDescription.setText(hillfort.description)
-            checkbox.setChecked(hillfort.visitedFlag)
+            checkboxVisit.setChecked(hillfort.visitedFlag)
+            checkboxFav.setChecked(hillfort.favouriteFlag)
+            hillfortRatingBar.rating = hillfort.rating.toFloat()
+
+                    //hillfortRatingBar.rating(1)
             //toast("HF Image" + hillfort.image)
             // add the hillfort image to the viewpager
             //imageUrls = hillfort.image)
@@ -91,6 +99,9 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
             hillfort.description = hillfortDescription.text.toString()
             hillfort.visitedDate = Date() // set the date to right now
             hillfort.visitedFlag = checkBoxHillfortVisited.isChecked // depending on whether the box is checked
+            hillfort.favouriteFlag= checkBoxHillfortFav.isChecked // depending on whether the box is checked
+            hillfort.rating = hillfortRating.numStars
+
             // add the images from the imageUrl array to hillfort.image
             if (hillfort.title.isEmpty()) {
                 toast(R.string.enter_hillfort_title)
@@ -120,14 +131,14 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
 
         // listener for the deleteImage button
 
-        buttonDeleteImage.setOnClickListener { view ->
-
-            val viewPager = findViewById<ViewPager>(R.id.view_pager)
-
-            //toast("deleting image at" + viewPager.currentItem)
-            // hillfort image is currently null
-
-        }
+//        buttonDeleteImage.setOnClickListener { view ->
+//
+//            val viewPager = findViewById<ViewPager>(R.id.view_pager)
+//
+//            //toast("deleting image at" + viewPager.currentItem)
+//            // hillfort image is currently null
+//
+//        }
 
         chooseImage.setOnClickListener {
             // this is a check to limit the amount of images a user can add

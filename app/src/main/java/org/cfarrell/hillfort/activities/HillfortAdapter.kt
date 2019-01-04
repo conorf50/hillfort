@@ -3,7 +3,9 @@ package org.cfarrell.hillfort.activities
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import kotlinx.android.synthetic.main.activity_hllfort.view.*
 import kotlinx.android.synthetic.main.card_hillfort.view.*
+import kotlinx.android.synthetic.main.notification_template_lines_media.view.*
 import org.cfarrell.hillfort.R
 import org.cfarrell.hillfort.helpers.readImageFromPath
 import org.cfarrell.hillfort.models.HillfortModel
@@ -39,10 +41,15 @@ class HillfortAdapter constructor(private var hillforts: List<HillfortModel>,
             itemView.hillfortCardTitle.text = hillfort!!.title
             itemView.hillfortCardDescription.text = hillfort!!.description
             itemView.cardImageIcon.setImageBitmap(readImageFromPath(itemView.context, hillfort!!.image))
+            itemView.ratingTextView.text = hillfort!!.rating.toString()
 
             if (hillfort.visitedFlag == true) {
                 itemView.visitedFlag.setVisibility(View.VISIBLE) // only display the text if a hillfort has been visited
                 itemView.visitedFlag.text = "Visited on " + dateString
+            }
+
+            if (hillfort.favouriteFlag == true) {
+                itemView.favouriteImgView.setImageResource(R.drawable.ic_favorite_red_24dp)
             }
 
             if (!(hillfort.lat == 0.0 || hillfort.lng == 0.0)) {
