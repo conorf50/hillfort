@@ -10,6 +10,9 @@ internal fun getId(): Long {
 }
 
 class HillfortMemStore : HillfortStore, AnkoLogger {
+  override fun findFavs(): List<HillfortModel> {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+  }
 
   val hillforts = ArrayList<HillfortModel>()
 
