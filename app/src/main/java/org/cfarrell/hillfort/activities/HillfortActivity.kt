@@ -100,14 +100,14 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
             hillfort.visitedDate = Date() // set the date to right now
             hillfort.visitedFlag = checkBoxHillfortVisited.isChecked // depending on whether the box is checked
             hillfort.favouriteFlag= checkBoxHillfortFav.isChecked // depending on whether the box is checked
-            hillfort.rating = hillfortRating.numStars
+            hillfort.rating = hillfortRating.getRating().toInt()
 
             // add the images from the imageUrl array to hillfort.image
             if (hillfort.title.isEmpty()) {
                 toast(R.string.enter_hillfort_title)
             } else {
                 if (edit) {
-
+                    toast("Rating + " + hillfort.rating)
                     app.hillforts.update(hillfort.copy())
                     finish()
 
