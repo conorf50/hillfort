@@ -23,6 +23,7 @@ fun readImageFromPath(context: Context, path: ArrayList<String>): Bitmap? {
     // set the image bitmap to be the first in the hillfort array object
     //val uri = Uri.parse(path.first())
 
+    // attempt to obtain permission from the user
     try {
         //ActivityCompat.requestPermissions(this, Manifest.permission.READ_EXTERNAL_STORAGE.arr)
                 val uri = Uri.parse(path.first()) // parse the first element if it exists
