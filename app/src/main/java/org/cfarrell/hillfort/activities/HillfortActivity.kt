@@ -44,6 +44,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
         imageUrls.clear() // clear the image urls array
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hllfort)
+
         //toolbarAdd.title = title
         // setSupportActionBar(toolbarAdd)
         val buttonDeleteImage: View = findViewById(R.id.deleteImage)
@@ -65,6 +66,9 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
             val checkboxVisit = findViewById<CheckBox>(R.id.checkBoxHillfortVisited)
             val checkboxFav = findViewById<CheckBox>(R.id.checkBoxHillfortFav)
             val hillfortRatingBar = findViewById<RatingBar>(R.id.hillfortRating)
+
+            // set the title of the app bar to show that we are editing
+            super.setTitle(R.string.title_activity_edit_hillfort)
 
             edit = true
             hillfort = intent.extras.getParcelable<HillfortModel>("hillfort edit")
@@ -90,6 +94,11 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
                 chooseImage.setText(R.string.change_hillfort_image)
             }
             btnAdd.setText(R.string.save_hillfort)
+        }
+        else{
+            // set the title of the app bar
+            super.setTitle(R.string.title_activity_add_hillfort)
+
         }
 
         btnAdd.setOnClickListener() { view ->

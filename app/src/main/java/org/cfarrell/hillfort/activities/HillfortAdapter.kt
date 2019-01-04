@@ -1,8 +1,10 @@
 package org.cfarrell.hillfort.activities
 
+import android.Manifest
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityCompat
 import kotlinx.android.synthetic.main.activity_hllfort.view.*
 import kotlinx.android.synthetic.main.card_hillfort.view.*
 import kotlinx.android.synthetic.main.notification_template_lines_media.view.*
