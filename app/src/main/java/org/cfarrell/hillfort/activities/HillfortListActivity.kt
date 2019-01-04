@@ -116,9 +116,9 @@ class HillfortListActivity : AppCompatActivity(), HillfortListener, AnkoLogger {
 //            R.id.settings -> {
 //                startActivityForResult<HillfortSettingsActivity>(0)
 //            }
-//            R.id.favourites -> {
-//                startActivityForResult<FavouriteHillfortsActivity>(0)
-//            }
+            R.id.favourites -> {
+                startActivityForResult<HillfortFavouriteActivity>(0)
+            }
         }
         return super.onOptionsItemSelected(item)
     }

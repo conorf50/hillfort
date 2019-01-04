@@ -29,26 +29,19 @@ class HillfortFavouriteActivity : AppCompatActivity(), HillfortListener, AnkoLog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_hillfort_list)
+        setContentView(R.layout.activity_hillfort_favourites)
         app = application as MainApp
+        super.setTitle("1234")
         //toolbarMain.title = title
         //setSupportActionBar(toolbarMain)
         // from above link on requesting permissions
         setupPermissions()
 
 
-        // add a floating action button listener
-        val fab: View = findViewById(R.id.fab_add)
-        fab.setOnClickListener { view ->
-
-            startActivityForResult<HillfortActivity>(0)
-
-        }
-
-
         val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = HillfortAdapter(app.hillforts.findAll(), this)
+
         loadHillforts ()
     }
 
@@ -107,26 +100,6 @@ class HillfortFavouriteActivity : AppCompatActivity(), HillfortListener, AnkoLog
         recyclerView.adapter?.notifyDataSetChanged()
     }
 
-
-
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        when (item.itemId) {
-//            R.id.mapView -> {
-//                startActivityForResult<HillfortMapsActivity>(0)
-//
-//            }
-////            R.id.settings -> {
-////                startActivityForResult<HillfortSettingsActivity>(0)
-////            }
-////            R.id.favourites -> {
-////                startActivityForResult<FavouriteHillfortsActivity>(0)
-////            }
-//        }
-//        return super.onOptionsItemSelected(item)
-//    }
 
     override fun onHillfortClick(hillfort: HillfortModel) {
 
