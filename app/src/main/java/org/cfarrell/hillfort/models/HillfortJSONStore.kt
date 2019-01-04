@@ -18,7 +18,8 @@ fun generateRandomId(): Long {
 
 class HillfortJSONStore : HillfortStore, AnkoLogger {
 
-  val context: Context
+
+    val context: Context
   var hillforts = mutableListOf<HillfortModel>()
 
   constructor (context: Context) {
@@ -32,12 +33,17 @@ class HillfortJSONStore : HillfortStore, AnkoLogger {
     return hillforts
   }
 
+
+
   override fun create(hillfort: HillfortModel) {
     hillfort.id = generateRandomId()
     hillforts.add(hillfort)
     serialize()
   }
-  
+
+
+
+
 
 
 
@@ -51,6 +57,8 @@ class HillfortJSONStore : HillfortStore, AnkoLogger {
       foundHillfort.lng = hillfort.lng
       foundHillfort.zoom = hillfort.zoom
       foundHillfort.visitedFlag = hillfort.visitedFlag
+      foundHillfort.favouriteFlag = hillfort.favouriteFlag
+      foundHillfort.rating = hillfort.rating
 serialize()
     }
   }
@@ -73,10 +81,15 @@ serialize()
   }
 
   override fun findById(id:Long) : HillfortModel? {
-    val foundPlacemark: HillfortModel? = hillforts.find { it.id == id }
-    return foundPlacemark
+    val foundHillfort: HillfortModel? = hillforts.find { it.id == id }
+    return foundHillfort
   }
 
 
+    override fun findFavs():List<HillfortModel> {
+        serialize() // update the favourites first
+        //val favHillfort: HillfortModel? = hillforts.find { it.visitedFlag == true }
+        return hillforts.filter { it.favouriteFlag == true }
+    }
 
 }

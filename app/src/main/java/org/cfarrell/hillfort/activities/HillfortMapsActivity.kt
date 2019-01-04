@@ -15,6 +15,7 @@ import org.jetbrains.anko.toast
 import kotlinx.android.synthetic.main.content_hillfort_maps.*
 import org.cfarrell.hillfort.helpers.readImageFromPath
 import org.cfarrell.hillfort.main.MainApp
+import java.text.SimpleDateFormat
 
 class HillfortMapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener, AnkoLogger {
 
@@ -39,7 +40,12 @@ class HillfortMapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListene
         val hillfort = app.hillforts.findById(tag)
         currentTitle.text = hillfort!!.title
         currentDescription.text = hillfort!!.description
-        info { "HILLFORT   "+hillfort }
+
+        // parse the date into something that looks nice
+        val dateString = SimpleDateFormat("E, MMM dd YYYY").format(hillfort!!.visitedDate)
+
+        hillfortVisitDate.setText(dateString)
+        //toast( "HILLFORT   "+hillfort )
         imageView.setImageBitmap(readImageFromPath(this@HillfortMapsActivity, hillfort.image))
         return true
     }
@@ -78,6 +84,7 @@ class HillfortMapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListene
             val options = MarkerOptions().title(it.title).position(loc)
             map.addMarker(options).tag = it.id
             map.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, it.zoom))
+            //toast(it.description)
         }
 
     }
