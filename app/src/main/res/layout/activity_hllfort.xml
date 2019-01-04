@@ -7,33 +7,33 @@
                                                    tools:context="org.cfarrell.hillfort.activities.HillfortActivity">
 
     <Button
-            android:layout_width="156dp"
-            android:layout_height="wrap_content"
+            android:layout_width="82dp"
+            android:layout_height="53dp"
+            android:id="@+id/deleteImage"
+            style="@style/Widget.AppCompat.Button" android:text="@string/button_deleteImage"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="96dp" android:layout_marginTop="44dp"
+            app:layout_constraintTop_toBottomOf="@+id/hillfortDescription" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/view_pager" app:layout_constraintVertical_bias="0.222"/>
+    <Button
+            android:layout_width="82dp"
+            android:layout_height="53dp"
             android:id="@+id/chooseImage"
             style="@style/Widget.AppCompat.Button" android:text="@string/button_addImage"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-            app:layout_constraintHorizontal_bias="0.0" android:layout_marginTop="264dp"
-            app:layout_constraintTop_toTopOf="parent"/>
-    <Button
-            android:layout_width="156dp"
-            android:layout_height="wrap_content"
-            android:id=
-                    "@+id/deleteImage" style="@style/Widget.AppCompat.Button" android:text="@string/button_deleteImage"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-            app:layout_constraintHorizontal_bias="1.0" android:layout_marginTop="264dp"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="12dp"
+            app:layout_constraintBottom_toTopOf="@+id/view_pager" android:layout_marginBottom="16dp"/>
 
 
     <CheckBox
-            android:text="Mark as visited"
-            android:layout_width="143dp"
+            android:text="Visited"
+            android:layout_width="87dp"
             android:layout_height="wrap_content" android:id="@+id/checkBoxHillfortVisited"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-            app:layout_constraintHorizontal_bias="0.0" android:layout_marginTop="212dp"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintEnd_toEndOf="@+id/checkBoxHillfortFav"
+            android:layout_marginEnd="96dp" android:layout_marginBottom="24dp"
+            app:layout_constraintBottom_toTopOf="@+id/view_pager"
+            app:layout_constraintStart_toEndOf="@+id/deleteImage" android:layout_marginStart="8dp"
+            app:layout_constraintHorizontal_bias="0.97" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/hillfortDescription" app:layout_constraintVertical_bias="1.0"/>
 
 
 
@@ -71,22 +71,24 @@
 
 
     <androidx.viewpager.widget.ViewPager
-            android:layout_width="429dp"
-            android:layout_height="220dp" android:layout_marginBottom="16dp"
+            android:layout_width="405dp"
+            android:layout_height="310dp" android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp"
             android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"
             android:id="@+id/view_pager"
-            app:layout_constraintVertical_bias="0.897"/>
+            app:layout_constraintVertical_bias="0.886" app:layout_constraintHorizontal_bias="0.571"/>
     <Button
             android:text="@string/button_location"
-            android:layout_width="156dp"
+            android:layout_width="165dp"
             android:layout_height="42dp"
-            android:id="@+id/hillfortLocation" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-            android:layout_marginTop="140dp" app:layout_constraintTop_toTopOf="@+id/hillfortTitle"
-            app:layout_constraintHorizontal_bias="0.0"/>
+            android:id="@+id/hillfortLocation"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            android:layout_marginBottom="428dp"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp" app:layout_constraintHorizontal_bias="0.025" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/hillfortDescription" app:layout_constraintVertical_bias="0.0"/>
     <Button
             android:text="@string/button_addHillfort"
             android:layout_width="wrap_content"
@@ -94,6 +96,28 @@
             android:id="@+id/btnAdd" app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp" android:layout_marginBottom="4dp"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.498"/>
+    <RatingBar
+            android:layout_width="78dp"
+            android:layout_height="16dp"
+            style="@style/Widget.AppCompat.RatingBar.Small"
+            android:id="@+id/hillfortRating"
+            android:isIndicator="false" android:rating="0" android:stepSize="1"
+            android:visibility="visible"
+            android:layout_marginEnd="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="148dp" app:layout_constraintStart_toEndOf="@+id/hillfortLocation"
+            android:layout_marginStart="8dp" app:layout_constraintHorizontal_bias="1.0"/>
+    <CheckBox
+            android:layout_width="93dp"
+            android:layout_height="37dp"
+            android:id="@+id/checkBoxHillfortFav" android:clickable="true"
+            android:button="@android:drawable/btn_star"
+            android:text="Favourite"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="12dp" android:layout_marginTop="52dp"
+            app:layout_constraintTop_toBottomOf="@+id/hillfortDescription" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/view_pager" app:layout_constraintVertical_bias="0.352"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
