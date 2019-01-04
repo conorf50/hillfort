@@ -45,10 +45,10 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hllfort)
         //toolbarAdd.title = title
-       // setSupportActionBar(toolbarAdd)
+        // setSupportActionBar(toolbarAdd)
         val buttonDeleteImage: View = findViewById(R.id.deleteImage)
         // hide the delete button for now as it causes bugs
-       buttonDeleteImage.setVisibility(View.GONE)
+        buttonDeleteImage.setVisibility(View.GONE)
 
         // see this at bottom of file.
         // Source: https://www.techotopia.com/index.php/Kotlin_-_Making_Runtime_Permission_Requests_in_Android
@@ -74,7 +74,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
             checkboxFav.setChecked(hillfort.favouriteFlag)
             hillfortRatingBar.rating = hillfort.rating.toFloat()
 
-                    //hillfortRatingBar.rating(1)
+            //hillfortRatingBar.rating(1)
             //toast("HF Image" + hillfort.image)
             // add the hillfort image to the viewpager
             //imageUrls = hillfort.image)
@@ -100,14 +100,14 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
             hillfort.visitedDate = Date() // set the date to right now
             hillfort.visitedFlag = checkBoxHillfortVisited.isChecked // depending on whether the box is checked
             hillfort.favouriteFlag= checkBoxHillfortFav.isChecked // depending on whether the box is checked
-            hillfort.rating = hillfortRating.numStars
+            hillfort.rating = hillfortRating.getRating().toInt()
 
             // add the images from the imageUrl array to hillfort.image
             if (hillfort.title.isEmpty()) {
                 toast(R.string.enter_hillfort_title)
             } else {
                 if (edit) {
-
+                    toast("Rating + " + hillfort.rating)
                     app.hillforts.update(hillfort.copy())
                     finish()
 
@@ -259,5 +259,4 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
         }
     }
 }
-
 

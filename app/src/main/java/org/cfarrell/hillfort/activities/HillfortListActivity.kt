@@ -60,10 +60,6 @@ class HillfortListActivity : AppCompatActivity(), HillfortListener, AnkoLogger {
     }
 
 
-    fun showHillforts(hillforts: List<HillfortModel>) {
-        recyclerView.adapter = HillfortAdapter(hillforts, this)
-        recyclerView.adapter?.notifyDataSetChanged()
-    }
 
     private fun setupPermissions() {
         //source : https://www.techotopia.com/index.php/Kotlin_-_Making_Runtime_Permission_Requests_in_Android
@@ -85,7 +81,7 @@ class HillfortListActivity : AppCompatActivity(), HillfortListener, AnkoLogger {
 
     // override this function as specified in the permissions tutorial above
     override fun onRequestPermissionsResult(requestCode: Int,
-                                             permissions: Array<String>, grantResults: IntArray) {
+                                            permissions: Array<String>, grantResults: IntArray) {
         when (requestCode) {
             STORAGE_REQUEST_CODE -> {
 
@@ -98,6 +94,15 @@ class HillfortListActivity : AppCompatActivity(), HillfortListener, AnkoLogger {
             }
         }
     }
+
+
+
+    fun showHillforts(hillforts: List<HillfortModel>) {
+        recyclerView.adapter = HillfortAdapter(hillforts, this)
+        recyclerView.adapter?.notifyDataSetChanged()
+    }
+
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Handle action bar item clicks here. The action bar will
