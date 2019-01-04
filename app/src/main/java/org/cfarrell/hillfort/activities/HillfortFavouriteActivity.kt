@@ -31,7 +31,8 @@ class HillfortFavouriteActivity : AppCompatActivity(), HillfortListener, AnkoLog
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hillfort_favourites)
         app = application as MainApp
-        super.setTitle("1234")
+        // set the title of the app bar
+        super.setTitle(R.string.title_activity_favourite_hillforts)
         //toolbarMain.title = title
         //setSupportActionBar(toolbarMain)
         // from above link on requesting permissions
@@ -40,13 +41,13 @@ class HillfortFavouriteActivity : AppCompatActivity(), HillfortListener, AnkoLog
 
         val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = HillfortAdapter(app.hillforts.findAll(), this)
+        recyclerView.adapter = HillfortAdapter(app.hillforts.findFavs(), this)
 
         loadHillforts ()
     }
 
     private fun loadHillforts() {
-        showHillforts(app.hillforts.findAll())
+        showHillforts(app.hillforts.findFavs())
     }
 
 
