@@ -87,9 +87,9 @@ serialize()
 
 
     override fun findFavs():List<HillfortModel> {
-        //serialize() // update the favourites first
+        serialize() // update the favourites first
         //val favHillfort: HillfortModel? = hillforts.find { it.visitedFlag == true }
-        return hillforts.filter { it.visitedFlag == true }
+        return hillforts.filter { it.favouriteFlag == true }
     }
 
 }

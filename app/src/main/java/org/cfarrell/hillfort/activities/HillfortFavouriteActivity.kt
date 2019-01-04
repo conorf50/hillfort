@@ -43,10 +43,12 @@ class HillfortFavouriteActivity : AppCompatActivity(), HillfortListener, AnkoLog
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = HillfortAdapter(app.hillforts.findFavs(), this)
 
+
         loadHillforts ()
     }
 
     private fun loadHillforts() {
+
         showHillforts(app.hillforts.findFavs())
     }
 
