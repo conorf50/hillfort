@@ -25,6 +25,7 @@ import org.cfarrell.hillfort.models.HillfortModel
 import org.cfarrell.hillfort.models.Location
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.content_hillfort_maps.*
 import org.cfarrell.hillfort.helpers.ImageViewPagerHelper
 import java.time.Duration
 import java.util.*
@@ -33,15 +34,13 @@ import java.util.*
 class HillfortActivity : AppCompatActivity(), AnkoLogger {
 
     var hillfort = HillfortModel()
+    lateinit var presenter: HillfortPresenter
     lateinit var app: MainApp
-    val IMAGE_REQUEST = 1
-    val LOCATION_REQUEST = 2
-    val IMAGE_DELETE_REQUEST = 3
+
+
     private val imageUrls = arrayListOf<String>()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
-        imageUrls.clear() // clear the image urls array
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hllfort)
 
@@ -54,85 +53,17 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
         // see this at bottom of file.
         // Source: https://www.techotopia.com/index.php/Kotlin_-_Making_Runtime_Permission_Requests_in_Android
         //setupPermissions()
+        presenter = HillfortPresenter(this)
 
         info("Hillfort Activity started..")
 
-        app = application as MainApp
-        var edit = false
-        //toast("hillfort" + hillfort)
 
-        if (intent.hasExtra("hillfort edit")) {
-            val viewPager = findViewById<ViewPager>(R.id.view_pager)
-            val checkboxVisit = findViewById<CheckBox>(R.id.checkBoxHillfortVisited)
-            val checkboxFav = findViewById<CheckBox>(R.id.checkBoxHillfortFav)
-            val hillfortRatingBar = findViewById<RatingBar>(R.id.hillfortRating)
-
-            // set the title of the app bar to show that we are editing
-            super.setTitle(R.string.title_activity_edit_hillfort)
-
-            edit = true
-            hillfort = intent.extras.getParcelable<HillfortModel>("hillfort edit")
-            hillfortTitle.setText(hillfort.title)
-            hillfortDescription.setText(hillfort.description)
-            checkboxVisit.setChecked(hillfort.visitedFlag)
-            checkboxFav.setChecked(hillfort.favouriteFlag)
-            hillfortRatingBar.rating = hillfort.rating.toFloat()
-
-            //hillfortRatingBar.rating(1)
-            //toast("HF Image" + hillfort.image)
-            // add the hillfort image to the viewpager
-            //imageUrls = hillfort.image)
-            hillfort.image.forEach { imageUrls.add(it) }
-
-            //toast("hilfort image " + imageUrls.toString())
-            //here the imageView is being populated with the list of image URIs
-            val adapter = ImageViewPagerHelper(this, imageUrls)
-            viewPager.setAdapter(adapter)
-            adapter.notifyDataSetChanged() // update the viewpager
-
-            if (hillfort.image != null) {
-                chooseImage.setText(R.string.change_hillfort_image)
-            }
-            btnAdd.setText(R.string.save_hillfort)
-        }
-        else{
-            // set the title of the app bar
-            super.setTitle(R.string.title_activity_add_hillfort)
-
-        }
-
-        btnAdd.setOnClickListener() { view ->
-
-            //      adapter.notifyDataSetChanged() //update the viewpager view with the new image
-            hillfort.title = hillfortTitle.text.toString()
-            hillfort.description = hillfortDescription.text.toString()
-            hillfort.visitedDate = Date() // set the date to right now
-            hillfort.visitedFlag = checkBoxHillfortVisited.isChecked // depending on whether the box is checked
-            hillfort.favouriteFlag= checkBoxHillfortFav.isChecked // depending on whether the box is checked
-            hillfort.rating = hillfortRating.getRating().toInt()
-
-            // add the images from the imageUrl array to hillfort.image
-            if (hillfort.title.isEmpty()) {
+        btnAdd.setOnClickListener {
+            if (hillfortTitle.text.toString().isEmpty()) {
                 toast(R.string.enter_hillfort_title)
             } else {
-                if (edit) {
-                    toast("Rating + " + hillfort.rating)
-                    app.hillforts.update(hillfort.copy())
-                    finish()
-
-                } else {
-                    // todo hide delete button on hf add
-                    app.hillforts.create(hillfort.copy())
-                    finish()
-
-                }
+                presenter.doAddOrSave(hillfortTitle.text.toString(), hillfortDescription.text.toString(), Date(), checkBoxHillfortVisited.isChecked, checkBoxHillfortVisited.isChecked,hillfortRating.getRating().toInt())
             }
-            info("add Button Pressed: $hillfortTitle")
-            setResult(AppCompatActivity.RESULT_OK)
-            // todo display snackbar confiming placemark add
-            // todo add this snackbar to the hillfortList view instead of this one
-            Snackbar.make(view,"Hillfort added", Snackbar.LENGTH_SHORT)
-
         }
 
 
@@ -152,7 +83,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
         chooseImage.setOnClickListener {
             // this is a check to limit the amount of images a user can add
             if (imageUrls.size <= 4) {
-                showImagePicker(this, IMAGE_REQUEST)
+                presenter.doSelectImage()
             } else {
                 toast("Max amount of images selected")
             }
@@ -161,28 +92,46 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
 
 
         hillfortLocation.setOnClickListener {
-            // this is the default location of WIT
-            val location = Location(52.245696, -7.139102, 15f)
-            if (hillfort.zoom != 0f) {
-                location.lat = hillfort.lat
-                location.lng = hillfort.lng
-                location.zoom = hillfort.zoom
-            }
-            startActivityForResult(intentFor<MapsActivity>().putExtra("location", location), LOCATION_REQUEST)
+            presenter.doSetLocation()
         }
 
     }
 
 
 
+    fun showHillfort(hillfort: HillfortModel) {
+        val viewPager = findViewById<ViewPager>(R.id.view_pager)
+        val checkboxVisit = findViewById<CheckBox>(R.id.checkBoxHillfortVisited)
+        val checkboxFav = findViewById<CheckBox>(R.id.checkBoxHillfortFav)
+        val hillfortRatingBar = findViewById<RatingBar>(R.id.hillfortRating)
+
+
+        hillfortTitle.setText(hillfort.title)
+        hillfortDescription.setText(hillfort.description)
+        checkboxVisit.setChecked(hillfort.visitedFlag)
+        checkboxFav.setChecked(hillfort.favouriteFlag)
+        hillfortRatingBar.rating = hillfort.rating.toFloat()
+        hillfort.image.forEach { imageUrls.add(it) }
+
+        //toast("hilfort image " + imageUrls.toString())
+        //here the imageView is being populated with the list of image URIs
+        val adapter = ImageViewPagerHelper(this, imageUrls)
+        viewPager.setAdapter(adapter)
+        adapter.notifyDataSetChanged() // update the viewpager
+
+        if (hillfort.image != null) {
+            chooseImage.setText(R.string.change_hillfort_image)
+        }
+        btnAdd.setText(R.string.save_hillfort)
+    }
 
 
 
 
 
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_hillfort, menu)
+       menu.getItem(0).setVisible(true)
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -223,49 +172,11 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        val viewPager = findViewById<ViewPager>(R.id.view_pager)
-        imageUrls.clear()
-
-        //when the Change image button is pressed
-        when (requestCode) {
-            IMAGE_REQUEST -> {
-                if (data != null) {
-                    imageUrls.add(data.getData().toString())
-                    imageUrls.forEach { hillfort.image.add(it) }
-                    // call the viewpager object
-                    val adapter = ImageViewPagerHelper(this, hillfort.image)
-                    viewPager.setAdapter(adapter)
-
-                    adapter.notifyDataSetChanged() //update the viewpager view with the new image
-                    chooseImage.setText(R.string.change_hillfort_image)
-                }
-            }
-//        IMAGE_DELETE_REQUEST -> { // when we want to delete a hilfort image
-//            if (data != null) {
-//                imageUrls.add( data.getData().toString())
-//                //hillfort.image = imageUrls
-//                // remove the item at the same index as the viewpager location
-//                imageUrls.removeAt(viewPager.currentItem)
-//
-//
-//                // call the viewpager object
-//                val adapter = ImageViewPagerHelper(this, imageUrls)
-//                viewPager.setAdapter(adapter)
-//
-//                adapter.notifyDataSetChanged() //update the viewpager view with the new image
-//            }
-//        }
-
-
-            LOCATION_REQUEST -> {
-                if (data != null) {
-                    val location = data.extras.getParcelable<Location>("location")
-                    hillfort.lat = location.lat
-                    hillfort.lng = location.lng
-                    hillfort.zoom = location.zoom
-                }
-            }
+        if (data != null) {
+            presenter.doActivityResult(requestCode, resultCode, data)
         }
     }
+
+
 }
 
